@@ -6,8 +6,17 @@ body {
     background: url('/media/background2.jpg') no-repeat center fixed;
     background-size: cover;
     height: calc(100vh - 164px);  /* the 164px is the height of the header, therefore we subtract this from the image */
-    color: #555;    /* CHANGE THIS */
-    font-family: 'Do Hyeon';   /* CHANGE THIS */
+    color: rgb(20, 20, 20);    /* CHANGE THIS */
+    font-family: 'Righteous', cursive;   /* CHANGE THIS */
+}
+
+#topnav {
+    background-color: rgb(122, 0, 122);
+    color: white;
+}
+
+.dropdown-menu {
+    border-radius: 0;
 }
 
 /* from Bulma */
@@ -48,8 +57,16 @@ body {
     color: #000 !important;
 }
 
+.text-purple {
+    color: rgb(122, 0, 122);
+}
+
 .border-black {
     border: 1px solid black !important;
+}
+
+.bg-black {
+    background: #000 !important;
 }
 
 /* -------------------------------- Media Queries */
