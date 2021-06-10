@@ -11,8 +11,12 @@ body {
 }
 
 #topnav {
-    background-color: rgb(122, 0, 122);
+    background-color: #220038;
     color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #220038;
 }
 
 .dropdown-menu {
@@ -33,7 +37,7 @@ body {
 }
 
 .shop-now-button {
-    background: black;
+    background: #220038;
     color: white;
     min-width: 260px;
 }
@@ -58,7 +62,11 @@ body {
 }
 
 .text-purple {
-    color: rgb(122, 0, 122);
+    color: #220038;
+}
+
+.text-white {
+    color: white;
 }
 
 .border-black {
