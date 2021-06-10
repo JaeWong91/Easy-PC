@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'  # this is to fix the spelling mistake you can see on the admin. It would normally appear as "Categorys"
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)  # more friendly looking in the front=end. blank=True means is optional
 
