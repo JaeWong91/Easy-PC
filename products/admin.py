@@ -7,6 +7,7 @@ from .models import Product, Category
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
+        'pk',   # added this myself because not auto generated???
         'name',
         'category',
         'price',
