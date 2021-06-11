@@ -18,13 +18,13 @@
                 Components
             </a>
             <div class="dropdown-menu" aria-labelledby="components-link">
-                <a href="" class="dropdown-item">Graphics Card</a>
-                <a href="" class="dropdown-item">Processor</a>
-                <a href="" class="dropdown-item">Memory (RAM)</a>
-                <a href="" class="dropdown-item">Motherboard</a>
-                <a href="" class="dropdown-item">Storage</a>
-                <a href="" class="dropdown-item">Power Supply</a>
-                <a href="" class="dropdown-item">Case</a>
+                <a href="{% url 'products' %}?category=graphics_card" class="dropdown-item">Graphics Card</a>
+                <a href="{% url 'products' %}?category=processor" class="dropdown-item">Processor</a>
+                <a href="{% url 'products' %}?category=memory" class="dropdown-item">Memory</a>
+                <a href="{% url 'products' %}?category=motherboard" class="dropdown-item">Motherboard</a>
+                <a href="{% url 'products' %}?category=storage" class="dropdown-item">Storage</a>
+                <a href="{% url 'products' %}?category=power_supply" class="dropdown-item">Power Supply</a>
+                <a href="{% url 'products' %}?category=case" class="dropdown-item">Case</a>
             </div>
         </li>
 
@@ -33,12 +33,12 @@
                 Peripherals
             </a>
             <div class="dropdown-menu" aria-labelledby="peripherals-link">
-                <a href="" class="dropdown-item">Mouse</a>
-                <a href="" class="dropdown-item">Keyboard</a>
-                <a href="" class="dropdown-item">Monitor</a>
-                <a href="" class="dropdown-item">Headset</a>
-                <a href="" class="dropdown-item">Headphones</a>
-                <a href="" class="dropdown-item">Speakers</a>
+                <a href="{% url 'products' %}?category=mouse" class="dropdown-item">Mouse</a>
+                <a href="{% url 'products' %}?category=keyboard" class="dropdown-item">Keyboard</a>
+                <a href="{% url 'products' %}?category=monitor" class="dropdown-item">Monitor</a>
+                <a href="{% url 'products' %}?category=headset" class="dropdown-item">Headset</a>
+                <a href="{% url 'products' %}?category=headphones" class="dropdown-item">Headphones</a>
+                <a href="{% url 'products' %}?category=speakers" class="dropdown-item">Speakers</a>
             </div>
         </li>
 
@@ -47,9 +47,9 @@
                 PCs and Laptops
             </a>
             <div class="dropdown-menu" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">Desktop PCs</a>
-                <a href="" class="dropdown-item">Gaming PCs</a>
-                <a href="" class="dropdown-item">Laptops</a>
+                <a href="{% url 'products' %}?category=desktop_pc" class="dropdown-item">Desktop PCs</a>
+                <a href="{% url 'products' %}?category=gaming_pc" class="dropdown-item">Gaming PCs</a>
+                <a href="{% url 'products' %}?category=laptop" class="dropdown-item">Laptops</a>
             </div>
         </li>
     </ul>
