@@ -87,6 +87,11 @@ body {
     z-index: -1;    /* this will ensure the overlay sits behind the content */
 }
 
+a.category-badge > span.badge:hover {
+    background: #212529 !important;   /* this colour matches the bootstrap dark class. This is to match the button with the dark class on them */
+    color: #fff !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

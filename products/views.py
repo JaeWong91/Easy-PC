@@ -22,8 +22,8 @@ def all_products(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'   # then we rename 'sortkey' to 'lower_name' in the event the user is sorting by name
                 products = products.annotate(lower_name=Lower('name'))  # then we annotate the current list of products with a new field.
-
-
+            if sortkey == 'category':
+                sortkey = 'category__name'  # the double underscore here allows us to drill into a related model
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':         # then check whether the direction is descending in order to decide whether to reverse the order
@@ -36,7 +36,7 @@ def all_products(request):
             # We are able to do this because category and product are related with a foreign key
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)  # converting the list of strings of category names passed through the URL into a list of actual category objects so we can access all their fields in the template.
-            
+
         if 'q' in request.GET:  # we named the text input in the form as 'q'. this checks if 'q' is in request.GET
             query = request.GET['q']
             if not query:
@@ -48,7 +48,7 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)  # now we pass them to the filter method in order to actually filter the products
 
-    current_sorting = f'{sort}_{direction}' # since we have both the sort and direction variables stored, this string formatting will return it to th e template
+    current_sorting = f'{sort}_{direction}'  # since we have both the sort and direction variables stored, this string formatting will return it to th e template
 
     context = {
         'products': products,
