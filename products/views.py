@@ -12,8 +12,24 @@ def all_products(request):
     products = Product.objects.all()
     query = None    # we start with None so we don't get an error loading the page without a search term.
     categories = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:       # check whether 'sort' is in request.GET
+            sortkey = request.GET['sort']   # if it is, then we set it equal to both 'sort' and 'sortkey' (which will be 'NONE' at this point).
+            sort = sortkey                  
+            if sortkey == 'name':
+                sortkey = 'lower_name'   # then we rename 'sortkey' to 'lower_name' in the event the user is sorting by name
+                products = products.annotate(lower_name=Lower('name'))  # then we annotate the current list of products with a new field.
+
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':         # then check whether the direction is descending in order to decide whether to reverse the order
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)   # finally, this is the order by model method
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             # the double underscore '__' is a common syntax in django when making queries. Using is here means we're looking for the name field of the category model.
@@ -32,10 +48,13 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)  # now we pass them to the filter method in order to actually filter the products
 
+    current_sorting = f'{sort}_{direction}' # since we have both the sort and direction variables stored, this string formatting will return it to th e template
+
     context = {
         'products': products,
         'search_term': query,
-        'current_categories': categories, 
+        'current_categories': categories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
