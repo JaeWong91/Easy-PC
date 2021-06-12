@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
-
+from django.shortcuts import get_object_or_404
+from products.models import Product     # importing Product class from the products.models
 
 # This is a called a "context processor". Its purpose is to make this
 # dictionary available to all templates across the entire application
@@ -8,8 +9,19 @@ def bag_contents(request):
 
     bag_items = []  # start with empty list
     total = 0   # initialize the total to zero
-    product_count = 0   #initialize the product count to zero
+    product_count = 0   # initialize the product count to zero
+    bag = request.session.get('bag', {})     # getting bag if it already exists or initializing a dictionaty if not
 
+    # this is a loop to show the total price of the shopping bag on the navbar
+    for item_id, quantity in bag.items():  # bag.items() is the bag from the session
+        product = get_object_or_404(Product, pk=item_id)
+        total += quantity * product.price
+        product_count += quantity
+        bag_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'product': product,     # adding the product object itself so can access the images and so on
+        })
 
     # this to calculate if qualifies for free delievery.
     # The STANDARD_DELIVERY_PERCENTAGE is 10% from settings.py at the bottom
