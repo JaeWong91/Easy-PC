@@ -13,13 +13,14 @@ def bag_contents(request):
     bag = request.session.get('bag', {})     # getting bag if it already exists or initializing a dictionaty if not
 
     # this is a loop to show the total price of the shopping bag on the navbar
-    for item_id, quantity in bag.items():  # bag.items() is the bag from the session
+    # bag.items() is the bag from the session
+    for item_id, item_data in bag.items():  # in the below lines, we changed "item_date" from "quantity". the video lessons did this for the sizes of clothing because items may have same id but different sizes
         product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
-        product_count += quantity
+        total += item_data * product.price
+        product_count += item_data
         bag_items.append({
             'item_id': item_id,
-            'quantity': quantity,
+            'quantity': item_data,
             'product': product,     # adding the product object itself so can access the images and so on
         })
 

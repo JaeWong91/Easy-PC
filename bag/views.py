@@ -8,7 +8,7 @@ def view_bag(request):
 
     return render(request, 'bag/bag.html')
 
-def add_to_bag(request, item_id):   
+def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
 
     quantity = int(request.POST.get('quantity'))    # converting to integer since itll come from the template as a string
@@ -17,9 +17,9 @@ def add_to_bag(request, item_id):
 
     # this will update the bag or update the quantity if it already exists
     if item_id in list(bag.keys()):
-        bag[item_id] += quantity    
+        bag[item_id] += quantity
     else:
         bag[item_id] = quantity
-    
+
     request.session['bag'] = bag    # and then overwrite the variable in the session with the updated version.
     return redirect(redirect_url)
