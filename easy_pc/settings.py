@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    
+    # Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'easy_pc.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'     # tell it which template pack to use
 
 TEMPLATES = [
     {
@@ -74,8 +79,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'bag.contexts.bag_contents',    # this will enable access to the bag contents in any templates
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
