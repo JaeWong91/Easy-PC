@@ -23,6 +23,12 @@ body {
     border-color: #220038;
 }
 
+.card-img-top {
+    max-height: 350px;
+    width: auto;
+    align-content: center;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
