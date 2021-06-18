@@ -96,6 +96,10 @@ body {
     background: #000 !important;
 }
 
+.border-purple {
+    border: 1px solid #220038 !important;
+}
+
 .overlay {
     height: 100%;
     width: 100%;
