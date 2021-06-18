@@ -183,4 +183,4 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')      # we get this from environment giving it an empty default value
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')      # I set this on gitpod dashboard settings on variables
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-DEFAULT_FROM_EMAIL = 'easypc@example.com'
+DEFAULT_FROM_EMAIL = 'jaewong19@hotmail.co.uk'
