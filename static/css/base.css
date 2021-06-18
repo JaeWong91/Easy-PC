@@ -133,7 +133,7 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
-/* bootstrap toasts  */
+/* -----------------------bootstrap toasts  */
 .message-container {
     position: fixed;
     top: 72px;
