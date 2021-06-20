@@ -24,7 +24,7 @@ class Product(models.Model):
     length = models.DecimalField(max_digits=4, decimal_places=2)  # length, width and height in cm
     width = models.DecimalField(max_digits=4, decimal_places=2)
     height = models.DecimalField(max_digits=4, decimal_places=2)
-    weight = models.DecimalField(max_digits=3, decimal_places=2)   # weight in kg
+    weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
