@@ -27,12 +27,20 @@ class Product(models.Model):
     height = models.DecimalField(max_digits=4, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    # product_rating = models.ForeignKey('ProductReview', related_name="rating", on_delete=models.CASCADE )   # try to get it so all products page sorts the products by rating!
+    # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    def get_rating(self):
+        total = sum(int(review['rating']) for review in self.reviews.values())  # get sum of all ratings in review
+
+        if total > 0:
+            average_rating = total / self.reviews.count()
+            return average_rating
 
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM
@@ -44,3 +52,6 @@ class ProductReview(models.Model):
     rating = models.IntegerField()
 
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.rating

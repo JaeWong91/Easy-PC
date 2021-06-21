@@ -37,8 +37,8 @@
                             </a>
                         </p>
                     {% endif %}
-                    {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                    {% if product.get_rating %}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.get_rating|floatformat:1 }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
                     {% endif %}
@@ -124,14 +124,14 @@
                     <div class="field">
                         <label for="content">Content</label>
 
-                        <div class="control">
-                            <textarea name="content" id="content"></textarea>
+                        <div class="container">
+                            <textarea class="form-control" name="content" id="content"></textarea>
                         </div>
                     </div>
 
                     <div class="field">
                         <div class="control">
-                            <button class="btn btn-black rounded-0">SUBMIT</button>
+                            <button class="btn btn-black rounded-0 mt-2">SUBMIT</button>
                         </div>
                     </div>
                 </form>

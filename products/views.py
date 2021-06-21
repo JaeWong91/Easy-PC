@@ -74,7 +74,7 @@ def product_detail(request, product_id):
         rating = request.POST.get('rating', 3)  # set default to 3
         content = request.POST.get('content', '')
         review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
-        messages.success(request, 'Successfully added product!')
+        messages.success(request, 'Successfully added review!')
 
         return redirect('product_detail', product_id=product_id)
 
