@@ -1,1 +1,1 @@
-web: gunicorn easy-pc.wsgi.application
+web: gunicorn Easy-PC.wsgi.application
