@@ -1,0 +1,1 @@
+web: gunicorn easy-pc.wsgi.application
