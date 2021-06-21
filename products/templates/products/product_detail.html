@@ -28,7 +28,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
+                    <h3 class="mb-0">{{ product.name }}</h3>
                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                     {% if product.category %}
                         <p class="small mt-1 mb-0">
@@ -49,6 +49,7 @@
                         </small>
                     {% endif %}
                     <p class="mt-3">{{ product.description }}</p>
+                    <p>Dimensions: {{ product.length }}</p>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
@@ -95,6 +96,72 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <!-- code from Code With Stein youtube video-->
+        
+
+        <div>
+            {% if request.user.is_authenticated %}
+                <p class="text-center text-purple"><strong>Write your review here!</strong></p>
+                <form class="text-center" method="POST" action=".">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <label for="rating">Rating out of 5</label>
+                        <div class="control">
+                            <div class="select">    <!--bulma-->
+                                <select name="rating" id="rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>   <!-- default -->
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="content">Content</label>
+
+                        <div class="control">
+                            <textarea name="content" id="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="btn btn-black rounded-0">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+
+            {% else %}
+                <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>
+            {% endif %}
+        </div>
+
+        
+        <div>
+            <h3 class="text-center mb-3">Reviews</h3>
+            {% for review in product.reviews.all %}
+                <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                    <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
+
+                    <p><strong>Comment:</strong> "{{ review.content }}"</p>
+                    <p><small>Reviewed by {{ review.user }} on {{ review.date_added|date:"d-m-y" }}</small></p>
+                    <p>date/time (for testing) {{ review.date_added }}</p>
+                </div>
+            {% empty %}
+                <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                    No reviews for this product yet.
+                </div>
+            {% endfor %}
+        </div>
+
+        
+
     </div>
 {% endblock %}
 

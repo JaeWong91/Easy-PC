@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q  # special object called Q to generate a search query such that we want the term to be searched in either the product NAME or DESCRIPTION
 from django.db.models.functions import Lower
 
-from .models import Product, Category
+from .models import Product, Category, ProductReview
 from .forms import ProductForm
 
 # Create your views here.
@@ -69,6 +69,15 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    # Add review -- not working
+    if request.method == 'POST' and request.user.is_authenticated:
+        rating = request.POST.get('rating', 3)  # set default to 3
+        content = request.POST.get('content', '')
+        review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
+        messages.success(request, 'Successfully added product!')
+
+        return redirect('product_detail', product_id=product_id)
+
     context = {
         'product': product,
     }
@@ -88,7 +97,7 @@ def add_product(request):
         if form.is_valid():
             product = form.save()       # store the product when calling form.save
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))       # send the product id to the redirect URL, this way it will redirect to the product detail page of recently added product
+            return redirect(reverse('product_detail', args=[product.id]))      # send the product id to the redirect URL, this way it will redirect to the product detail page of recently added product
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:

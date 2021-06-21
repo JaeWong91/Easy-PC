@@ -10,6 +10,12 @@ body {
     font-family: 'Righteous', cursive;   /* CHANGE THIS */
 }
 
+h1,
+h2,
+h3 {
+    color: #220038;
+}
+
 #topnav {
     background-color: #220038;
     color: white;
@@ -136,6 +142,11 @@ a.category-badge > span.badge:hover {
 input[name='q']::placeholder {
     color: #aab7c4;
 }
+
+.review-wrapper {
+    background-color: #22003834;
+}
+
 
 /* -----------------------bootstrap toasts  */
 .message-container {
