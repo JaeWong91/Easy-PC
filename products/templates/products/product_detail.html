@@ -97,9 +97,8 @@
             </div>
         </div>
         <hr>
-        <!-- code from Code With Stein youtube video-->
         
-
+        <!-- code from Code With Stein youtube video-->
         <div>
             {% if request.user.is_authenticated %}
                 <p class="text-center text-purple"><strong>Write your review here!</strong></p>
@@ -142,7 +141,6 @@
             {% endif %}
         </div>
 
-        
         <div>
             <h3 class="text-center mb-3">Reviews</h3>
             {% for review in product.reviews.all %}
@@ -159,9 +157,6 @@
                 </div>
             {% endfor %}
         </div>
-
-        
-
     </div>
 {% endblock %}
 

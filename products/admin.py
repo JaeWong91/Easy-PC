@@ -7,7 +7,7 @@ from .models import Product, Category, ProductReview
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
-        'pk',   # added this myself because not auto generated???
+        'pk',
         'name',
         'category',
         'price',
@@ -28,11 +28,11 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display = (
         'product_id',
-        'product',
-        'user',
-        'content',
-        'rating',
-        'date_added',
+        # 'product',
+        # 'user',
+        # 'content',
+        # 'rating',
+        # 'date_added',
     )
 
 
