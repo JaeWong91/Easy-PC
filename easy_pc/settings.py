@@ -136,7 +136,7 @@ else:
 
 
 # DATABASES = {
-#     'default': dj_database_url.parse('')
+#     'default': dj_database_url.parse('postgres://ljbmfxsgnurska:6138f588e75aaedbb6740e1a35474b99bfde29399aa12563b73332216ce05c48@ec2-54-155-92-75.eu-west-1.compute.amazonaws.com:5432/d6lno14accevcu')
 # }
 
 
