@@ -69,7 +69,7 @@ h3 {
     border: 1px solid black;
 }
 
-.btn-outline-black:hover,   /* change these names to purple */
+.btn-outline-black:hover,
 .btn-outline-black:active,
 .btn-outline-black:focus {
     background: #220038;
@@ -79,11 +79,32 @@ h3 {
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
-.btn-black:hover,       /* change these names to purple */
+.btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
     background: #220038;
     color: white;
+}
+
+.delete-button {
+    background-color: white;
+    color: red;
+}
+
+.delete-button:hover {
+    background-color: red;
+    color: white;
+}
+
+.edit-button {
+    background-color: white;
+    color: blue !important;
+}
+
+.edit-button:hover,
+.edit-button a:hover {
+    background-color: blue;
+    color: white !important;
 }
 
 .text-black {
@@ -138,6 +159,7 @@ a.category-badge > span.badge:hover {
 .remove-item {
     cursor: pointer;
 }
+
 
 input[name='q']::placeholder {
     color: #aab7c4;

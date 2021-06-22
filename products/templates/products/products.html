@@ -85,9 +85,9 @@
 
                                                 <!-- Button trigger modal -->
                                                 <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
+                                                    <button class="edit-button"><a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">Edit</button></a> | 
 
-                                                    <button type="button" class="text-danger modal-trigger border-0" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
+                                                    <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
                                                         Delete
                                                     </button>
                                                 </small>
