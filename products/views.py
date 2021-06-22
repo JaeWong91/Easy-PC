@@ -72,12 +72,14 @@ def product_detail(request, product_id):
     # user = request.user       # added myself - declare 'user' as the logged in user
 
     # if request.user.is_authenticated:
-    user_review = ProductReview.objects.filter(product=product, user=request.user)   #added myself - filter the reviews by product and user
+    #user_review = ProductReview.objects.filter(product=product, user=request.user)   #added myself - filter the reviews by product and user
     #     print(user_review)
 
     # Add review ----------------
     if request.method == 'POST' and request.user.is_authenticated:
+        user_review = ProductReview.objects.filter(product=product, user=request.user)
         print(user_review)
+
         if user_review:
             messages.error(request, 'You have already reviewed this product.')
             return redirect('product_detail', product_id=product_id)
