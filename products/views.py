@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q  # special object called Q to generate a search query such that we want the term to be searched in either the product NAME or DESCRIPTION
@@ -68,15 +69,25 @@ def product_detail(request, product_id):
     """ A view to show individual product detail """
 
     product = get_object_or_404(Product, pk=product_id)
+    # user = request.user       # added myself - declare 'user' as the logged in user
 
-    # Add review -- not working
+    # if request.user.is_authenticated:
+    user_review = ProductReview.objects.filter(product=product, user=request.user)   #added myself - filter the reviews by product and user
+    #     print(user_review)
+
+    # Add review ----------------
     if request.method == 'POST' and request.user.is_authenticated:
-        rating = request.POST.get('rating', 3)  # set default to 3
-        content = request.POST.get('content', '')
-        review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
-        messages.success(request, 'Successfully added review!')
+        print(user_review)
+        if user_review:
+            messages.error(request, 'You have already reviewed this product.')
+            return redirect('product_detail', product_id=product_id)
+        else:
+            rating = request.POST.get('rating', 3)  # set default to 3
+            content = request.POST.get('content', '')
+            review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
 
-        return redirect('product_detail', product_id=product_id)
+            messages.success(request, 'Thank you for leaving your review!')
+            return redirect('product_detail', product_id=product_id)
 
     context = {
         'product': product,
@@ -146,7 +157,7 @@ def delete_product(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-        
+
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')

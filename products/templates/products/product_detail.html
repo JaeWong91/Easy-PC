@@ -99,6 +99,11 @@
         
         <!-- code from Code With Stein youtube video -->
         <div>
+            {% if user_review  %}
+                <h1>ALREADY REVIEWED</h1> 
+            (% else %)
+                <h1>I dunno </h1> 
+            {% endif %}
             {% if request.user.is_authenticated %}
                 <p class="text-center text-purple"><strong>Write your review here!</strong></p>
                 <form class="text-center" method="POST" action=".">
@@ -117,7 +122,6 @@
                                 </select>
                                 out of 5
                             </div>
-
                         </div>
                     </div>
 
@@ -136,18 +140,17 @@
                     </div>
                 </form>
                 <hr>
-           
-
             {% else %}
                 <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>
             {% endif %}
+            
         </div>
 
         <div>
             <h3 class="text-center mb-3">Reviews</h3>
             {% if product.reviews.all %}
                 {% for review in product.reviews.all %}
-                    <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                    <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">
                         <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
 
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>
@@ -155,12 +158,12 @@
                         <p>date/time (for testing) {{ review.date_added }}</p>
                     </div>
                 {% empty %}
-                    <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                    <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">
                         No reviews for this product yet.
                     </div>
                 {% endfor %}
             {% else %}
-                <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">
                     No reviews for this product yet.
                 </div>
             {% endif %}
