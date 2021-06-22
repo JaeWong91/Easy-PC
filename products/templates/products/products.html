@@ -79,50 +79,53 @@
                                             {% endif %}
                                             
                                             <small class="text-muted"><i class="fas fa-star mr-1"></i>{% if product.get_rating == 0 %}No ratings yet {% else %}{{ product.get_rating|floatformat:1 }} / 5{% endif %}</small>
-                                            
-                                            {% if request.user.is_superuser %}
-                                                <!-- test modal-->
-
-                                                <!-- Button trigger modal -->
-                                                <small class="ml-3">
-                                                    <button class="edit-button"><a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">Edit</button></a> | 
-
-                                                    <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
-                                                        Delete
-                                                    </button>
-                                                </small>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="confirm-delete-{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title text-danger text-center" id="ModalLabel">WARNING</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <div class="modal-body text-purple text-center">
-                                                            <p> Are you sure you wish to remove the below product: </p>
-                                                            <p> <span class="text-danger">"{{ product.name }}"</span> ? </p>
-                                                            <p> This action is irreversible! </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button  data-target="#confirm-delete-{{ product.id }}" type="button" class="btn btn-danger"><a href="{% url 'delete_product' product.id %}" class="text-white">Delete</a></button>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            
-                                                <!-- DO NOT DELETE THIS-->
-                                                <!-- <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                                                </small> -->
-                                            {% endif %}
                                         </div>
                                     </div>
+                                        {% if request.user.is_superuser %}
+                                            <!-- Button trigger modal -->
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <small>
+                                                        <button class="edit-button"><a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">Edit</button></a> | 
+
+                                                        <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
+                                                            Delete
+                                                        </button>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="confirm-delete-{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title text-danger text-center" id="ModalLabel">WARNING</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body text-purple text-center">
+                                                        <p> Are you sure you wish to remove the below product: </p>
+                                                        <p> <span class="text-danger">"{{ product.name }}"</span> ? </p>
+                                                        <p> This action is irreversible! </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button  data-target="#confirm-delete-{{ product.id }}" type="button" class="btn btn-danger"><a href="{% url 'delete_product' product.id %}" class="text-white">Delete</a></button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- DO NOT DELETE THIS-->
+                                            <!-- <small class="ml-3">
+                                                <a href="{% url 'edit_product' product.id %}">Edit</a> | 
+                                                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                                            </small> -->
+                                        {% endif %}
+                                        
+                                    
                                 </div>
                             </div>
                         </div>
@@ -199,7 +202,6 @@
     </script>
 
     <script type="text/javascript">
-        $('.sidenav').sidenav();
         $('.collapsible').collapsible();
         $('.modal').modal();
         $('#textarea1').val('New Text');

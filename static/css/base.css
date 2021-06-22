@@ -37,6 +37,14 @@ h3 {
     max-height: 350px;
     width: auto;
     align-content: center;
+    cursor: pointer;
+}
+
+.card:hover {
+    color: #88004f;
+    border-color: #220038a9 !important;
+    border-radius: 1px !important;
+    border-width: 2px !important;
 }
 
 /* from Bulma */
@@ -58,6 +66,13 @@ h3 {
     min-width: 260px;
 }
 
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus {
+    background: black;
+    color: white;
+}
+
 .btn-black {
     background: black;
     color: white;
@@ -76,9 +91,7 @@ h3 {
     color: white !important;
 }
 
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
+
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
