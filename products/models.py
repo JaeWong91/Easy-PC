@@ -28,7 +28,7 @@ class Product(models.Model):
     weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
     price = models.DecimalField(max_digits=6, decimal_places=2)
     # product_rating = models.ForeignKey('ProductReview', on_delete=models.CASCADE )   # try to get it so all products page sorts the products by rating!
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # need to change this so that it uses the average ratings somehow
+    # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # need to change this so that it uses the average ratings somehow
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
