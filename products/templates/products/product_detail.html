@@ -37,7 +37,8 @@
                             </a>
                         </p>
                     {% endif %}
-                    {% if product.get_rating %}
+
+                    <!-- {% if product.get_rating %}
                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.get_rating|floatformat:1 }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
@@ -47,7 +48,8 @@
                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                             <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                         </small>
-                    {% endif %}
+                    {% endif %} -->
+
                     <p class="mt-3">{{ product.description }}</p>
                     <p>Dimensions: {{ product.length }}</p>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
@@ -99,6 +101,7 @@
         <hr>
         
         <!-- code from Code With Stein youtube video-->
+        <!--
         <div>
             {% if request.user.is_authenticated %}
                 <p class="text-center text-purple"><strong>Write your review here!</strong></p>
@@ -108,11 +111,11 @@
                     <div class="field">
                         <label for="rating">Rating out of 5</label>
                         <div class="control">
-                            <div class="select">    <!--bulma-->
+                            <div class="select">    
                                 <select name="rating" id="rating">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
-                                    <option value="3" selected>3</option>   <!-- default -->
+                                    <option value="3" selected>3</option>   
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
@@ -135,6 +138,7 @@
                     </div>
                 </form>
                 <hr>
+            -->
 
             {% else %}
                 <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>

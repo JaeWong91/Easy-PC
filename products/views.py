@@ -22,7 +22,7 @@ def all_products(request):
     if request.GET:
         if 'sort' in request.GET:       # check whether 'sort' is in request.GET
             sortkey = request.GET['sort']   # if it is, then we set it equal to both 'sort' and 'sortkey' (which will be 'NONE' at this point).
-            sort = sortkey                  
+            sort = sortkey
             if sortkey == 'name':
                 sortkey = 'lower_name'   # then we rename 'sortkey' to 'lower_name' in the event the user is sorting by name
                 products = products.annotate(lower_name=Lower('name'))  # then we annotate the current list of products with a new field.

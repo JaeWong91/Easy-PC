@@ -28,11 +28,11 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display = (
         'product_id',
-        # 'product',
-        # 'user',
-        # 'content',
-        # 'rating',
-        # 'date_added',
+        'product',
+        'user',
+        'content',
+        'rating',
+        'date_added',
     )
 
 
