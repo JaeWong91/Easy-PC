@@ -59,7 +59,7 @@
                                         <img class="card-img-top img-fluid p-3" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     </a>
                                 {% else %}
-                                    <a href="{% url 'product_detail' product.id %}">
+                                    <a href="{% url 'product_detail' product.id %}" class="mx-auto">
                                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     </a>
                                 {% endif %}

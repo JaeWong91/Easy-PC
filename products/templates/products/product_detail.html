@@ -105,9 +105,9 @@
                     {% csrf_token %}
 
                     <div class="field">
-                        <label for="rating">Rating out of 5</label>
                         <div class="control">
-                            <div class="select">    
+                            <div class="select">   
+                                Rating 
                                 <select name="rating" id="rating">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -115,12 +115,14 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
+                                out of 5
                             </div>
+
                         </div>
                     </div>
 
                     <div class="field">
-                        <label for="content">Content</label>
+                        <label for="content" class="mt-1">Comment: </label>
 
                         <div class="container">
                             <textarea class="form-control" name="content" id="content"></textarea>
