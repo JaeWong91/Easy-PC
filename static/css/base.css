@@ -7,13 +7,19 @@ body {
     background-size: cover;
     height: calc(100vh - 164px);  /* the 164px is the height of the header, therefore we subtract this from the image */
     color: rgb(20, 20, 20);    /* CHANGE THIS */
-    font-family: 'Righteous', cursive;   /* CHANGE THIS */
+    font-family: sans-serif;
+    
+}
+
+.logo-font {
+    font-family:  'Righteous', cursive;
 }
 
 h1,
 h2,
 h3 {
     color: #220038;
+    font-family:  'Righteous', cursive;
 }
 
 #topnav {

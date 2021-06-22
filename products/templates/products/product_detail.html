@@ -47,9 +47,13 @@
                         <div class="row">
                             <div class="col">
                                 <small>
-                                    <button class="edit-button"><a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">Edit</button></a> | 
+                                    <button class="edit-button">
+                                        <a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}"> 
+                                            <strong>Edit</strong> 
+                                        </a>
+                                    </button> | 
                                     <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
-                                        Delete
+                                        <strong>Delete</strong>
                                     </button>
                                 </small>
                             </div>

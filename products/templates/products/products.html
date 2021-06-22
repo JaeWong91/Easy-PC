@@ -69,7 +69,7 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
+                                            <p class="lead mb-0 mt-2 text-left font-weight-bold">£{{ product.price }}</p>
                                             {% if product.category %}
                                                 <p class="small mt-1 mb-0">
                                                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -86,10 +86,14 @@
                                             <div class="row">
                                                 <div class="col text-center">
                                                     <small>
-                                                        <button class="edit-button"><a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">Edit</button></a> | 
+                                                        <button class="edit-button">
+                                                            <a class="text-decoration-none p-0" href="{% url 'edit_product' product.id %}">
+                                                                <strong>Edit</strong>
+                                                            </a>
+                                                        </button> | 
 
                                                         <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ product.id }}">
-                                                            Delete
+                                                            <strong>Delete</strong> 
                                                         </button>
                                                     </small>
                                                 </div>

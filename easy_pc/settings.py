@@ -120,6 +120,7 @@ WSGI_APPLICATION = 'easy_pc.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# comment below out to migrate to Heroku
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
@@ -134,16 +135,8 @@ else:
     }
 
 
-# ** SWITCH TO MYSQL DATABASE to download data
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-# DATABASES = {
-#     'default': dj_database_url.parse('<paste postgres link here')
+#     'default': dj_database_url.parse('postgres link')
 # }
 
 
