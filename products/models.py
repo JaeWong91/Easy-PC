@@ -41,7 +41,7 @@ class Product(models.Model):
         if total > 0:
             average_rating = total / self.reviews.count()
         else:
-            average_rating = 0
+            average_rating = "No Rating"
 
         return average_rating
 

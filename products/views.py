@@ -69,14 +69,14 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
-    # Add review -- not working
-    # if request.method == 'POST' and request.user.is_authenticated:
-    #     rating = request.POST.get('rating', 3)  # set default to 3
-    #     content = request.POST.get('content', '')
-    #     review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
-    #     messages.success(request, 'Successfully added review!')
+    # Add review 
+    if request.method == 'POST' and request.user.is_authenticated:
+        rating = request.POST.get('rating', 3)  # set default to 3
+        content = request.POST.get('content', '')
+        review = ProductReview.objects.create(product=product, user=request.user, rating=rating, content=content)
+        messages.success(request, 'Successfully added review!')
 
-    #     return redirect('product_detail', product_id=product_id)
+        return redirect('product_detail', product_id=product_id)
 
     context = {
         'product': product,
