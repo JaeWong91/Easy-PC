@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="row">
+        <div class="col container mt-3">
+            <h2 class="logo-font text-center">{{ post.title }}</h2>
+            <p class="text-center"> By: {{ post.author.first_name }} {{ post.author.last_name }} </p>
+            <hr class="w-50 mb-1">
+            {{ post.body }}
+
+            <br><br>
+            <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Back</span>
+            </a>
+        </div>
+    </div>
+{% endblock %}
