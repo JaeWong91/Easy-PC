@@ -35,7 +35,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_rating(self):
+    # def get_rating(self): ##
     #     total = sum(int(review['rating']) for review in self.reviews.values())  # get sum of all ratings in review
 
     #     if total > 0:
