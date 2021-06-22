@@ -146,19 +146,21 @@
 
         <div>
             <h3 class="text-center mb-3">Reviews</h3>
-            <!-- {% for review in product.reviews.all %}
-                <div class="review-wrapper text-center container border-purple mb-3 py-2">
-                    <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
+            {% if products.reviews %}
+                {% for review in product.reviews.all %}
+                    <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                        <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
 
-                    <p><strong>Comment:</strong> "{{ review.content }}"</p>
-                    <p><small>Reviewed by {{ review.user }} on {{ review.date_added|date:"d-m-y" }}</small></p>
-                    <p>date/time (for testing) {{ review.date_added }}</p>
-                </div>
-            {% empty %}
-                <div class="review-wrapper text-center container border-purple mb-3 py-2">
-                    No reviews for this product yet.
-                </div>
-            {% endfor %} -->
+                        <p><strong>Comment:</strong> "{{ review.content }}"</p>
+                        <p><small>Reviewed by {{ review.user }} on {{ review.date_added|date:"d-m-y" }}</small></p>
+                        <p>date/time (for testing) {{ review.date_added }}</p>
+                    </div>
+                {% empty %}
+                    <div class="review-wrapper text-center container border-purple mb-3 py-2">
+                        No reviews for this product yet.
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
