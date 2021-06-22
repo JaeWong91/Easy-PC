@@ -141,9 +141,8 @@ else:
 #     }
 # }
 
-# ** UPLOAD TO HEROKU
 # DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     'default': dj_database_url.parse('<paste postgres link here')
 # }
 
 
