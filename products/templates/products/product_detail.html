@@ -38,7 +38,7 @@
                         </p>
                     {% endif %}
 
-                    <!-- {% if product.get_rating %}
+                    {% if product.get_rating %}
                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.get_rating|floatformat:1 }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
@@ -48,7 +48,7 @@
                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                             <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                         </small>
-                    {% endif %} -->
+                    {% endif %}
 
                     <p class="mt-3">{{ product.description }}</p>
                     <p>Dimensions: {{ product.length }}</p>
@@ -100,8 +100,7 @@
         </div>
         <hr>
         
-        <!-- code from Code With Stein youtube video-->
-        <!--
+        <!-- code from Code With Stein youtube video -->
         <div>
             {% if request.user.is_authenticated %}
                 <p class="text-center text-purple"><strong>Write your review here!</strong></p>
@@ -138,7 +137,7 @@
                     </div>
                 </form>
                 <hr>
-            -->
+           
 
             {% else %}
                 <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>
