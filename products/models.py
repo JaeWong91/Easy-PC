@@ -38,8 +38,10 @@ class Product(models.Model):
     def get_rating(self):
         total = sum(int(review['rating']) for review in self.reviews.values())  # get sum of all ratings in review
 
-        if total > 0:
-            total / self.reviews.count()
+        if self.reviews.count() > 0:
+            return total / self.reviews.count()
+        else:
+            return 0
 
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM
