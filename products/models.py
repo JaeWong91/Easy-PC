@@ -35,15 +35,15 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_rating(self):
-        total = sum(int(review['rating']) for review in self.reviews.values())  # get sum of all ratings in review
+    # def get_rating(self):
+    #     total = sum(int(review['rating']) for review in self.reviews.values())  # get sum of all ratings in review
 
-        if total > 0:
-            average_rating = total / self.reviews.count()
-        else:
-            average_rating = "No Rating"
+    #     if total > 0:
+    #         average_rating = total / self.reviews.count()
+    #     else:
+    #         average_rating = "No Rating"
 
-        return average_rating
+    #     return average_rating
 
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM
