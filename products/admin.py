@@ -35,6 +35,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
         'date_added',
     )
 
+    ordering = ('-date_added',)
 
 admin.site.register(Product, ProductAdmin)  # here is ('Class', 'Models'). The Product is the class, ProductAdmin is the model.
 admin.site.register(Category, CategoryAdmin)

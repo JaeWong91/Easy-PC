@@ -99,49 +99,49 @@
         
         <!-- code from Code With Stein youtube video -->
         <div>
-            {% if user_review  %}
-                <h1>ALREADY REVIEWED</h1> 
-            (% else %)
-                <h1>I dunno </h1> 
-            {% endif %}
-            {% if request.user.is_authenticated %}
-                <p class="text-center text-purple"><strong>Write your review here!</strong></p>
-                <form class="text-center" method="POST" action=".">
-                    {% csrf_token %}
-
-                    <div class="field">
-                        <div class="control">
-                            <div class="select">   
-                                Rating 
-                                <select name="rating" id="rating">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3" selected>3</option>   
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                out of 5
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label for="content" class="mt-1">Comment: </label>
-
-                        <div class="container">
-                            <textarea class="form-control" name="content" id="content"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="control">
-                            <button class="btn btn-black rounded-0 mt-2">SUBMIT</button>
-                        </div>
-                    </div>
-                </form>
+            {% if user_review %}
+                <p class="text-center">You have already reviewed this product.</p> 
                 <hr>
             {% else %}
-                <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>
+                {% if request.user.is_authenticated %}
+                    <p class="text-center text-purple"><strong>Write your review here!</strong></p>
+                    <form class="text-center" method="POST" action=".">
+                        {% csrf_token %}
+
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">   
+                                    Rating 
+                                    <select name="rating" id="rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3" selected>3</option>   
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    out of 5
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="content" class="mt-1">Comment: </label>
+
+                            <div class="container">
+                                <textarea class="form-control" name="content" id="content"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="btn btn-black rounded-0 mt-2">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
+                {% else %}
+                    <p class="text-center">Please <a href="{% url 'account_login' %}">sign in</a> to add your own review!</p>
+                {% endif %}
             {% endif %}
             
         </div>

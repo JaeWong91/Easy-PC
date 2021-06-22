@@ -70,10 +70,12 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     # user = request.user       # added myself - declare 'user' as the logged in user
+    user_review = None
 
-    # if request.user.is_authenticated:
-    #user_review = ProductReview.objects.filter(product=product, user=request.user)   #added myself - filter the reviews by product and user
-    #     print(user_review)
+    if request.user.is_authenticated:
+        user_review = ProductReview.objects.filter(product=product, user=request.user).exists()   #added myself - filter the reviews by product and user and check if exists
+        print(user_review)
+
 
     # Add review ----------------
     if request.method == 'POST' and request.user.is_authenticated:
@@ -93,9 +95,12 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
+        'user_review': user_review,
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
 
 
 @login_required
