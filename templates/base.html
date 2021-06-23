@@ -49,7 +49,7 @@
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                     <form method="GET" action="{% url 'products' %}">   
                         <div class="input-group w-100">
-                            <input class="form-control border border-black" type="text" name="q" placeholder="Search our site">  <!-- q is for query for the search, on the site when you use the search bar, the link at the end will have "q='rtx 3080'" -->
+                            <input class="form-control border border-black" type="text" name="q" placeholder="Search our products">  <!-- q is for query for the search, on the site when you use the search bar, the link at the end will have "q='rtx 3080'" -->
                             <div class="input-group-append">
                                 <button class="form-control btn btn-black border border-black" type="submit">
                                     <span class="icon">
@@ -66,7 +66,7 @@
                             <a class="text-white nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
                                     <div><i class="fas fa-user fa-lg"></i></div>
-                                    <p class="my-0">My Account</p>
+                                    <p class="my-0 logo-font">My Account</p>
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="user-options">
@@ -86,7 +86,7 @@
                             <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link" href="{% url 'view_bag' %}">
                                 <div class="text-center">
                                     <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                    <p class="my-0">
+                                    <p class="my-0 logo-font">
                                         {% if grand_total %}
                                             £{{ grand_total|floatformat:2 }}
                                         {% else %}

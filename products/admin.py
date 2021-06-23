@@ -26,6 +26,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display = (
+        'pk',
         'product_id',
         'product',
         'user',

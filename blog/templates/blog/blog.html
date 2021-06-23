@@ -15,9 +15,19 @@
         <div class="col container mt-3">
             <h2 class="logo-font text-center">Blog</h2>
             <hr class="w-50 mb-1">
+            {% if request.user.is_superuser %}
+                <div class="row">
+                    <a href="{% url 'add_post' %}" class="mx-auto btn btn-black rounded-0 btn-lg my-3">
+                        <span class="icon text-center">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text-uppercase text-center">Add Post</span>
+                    </a>
+                </div>
+            {% endif %}
             <ul>
                 {% for post in object_list %}
-                    <li> <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{ post.author.last_name }}<br>
+                    <li> <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{ post.author.last_name }}<br>
                     {{ post.body }}</li>
                 {% endfor %} 
             </ul>

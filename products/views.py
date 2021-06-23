@@ -69,7 +69,6 @@ def product_detail(request, product_id):
     """ A view to show individual product detail """
 
     product = get_object_or_404(Product, pk=product_id)
-    # user = request.user       # added myself - declare 'user' as the logged in user
     user_review = None
 
     if request.user.is_authenticated:
@@ -80,7 +79,7 @@ def product_detail(request, product_id):
     # Add review ----------------
     if request.method == 'POST' and request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user)
-        print(user_review)
+        # print(user_review)
 
         if user_review:
             messages.error(request, 'You have already reviewed this product.')
