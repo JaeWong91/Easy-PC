@@ -49,7 +49,7 @@
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                     <form method="GET" action="{% url 'products' %}">   
                         <div class="input-group w-100">
-                            <input class="form-control border border-black" type="text" name="q" placeholder="Search our products">  <!-- q is for query for the search, on the site when you use the search bar, the link at the end will have "q='rtx 3080'" -->
+                            <input class="form-control border border-black" type="text" name="q" placeholder="Search our products">
                             <div class="input-group-append">
                                 <button class="form-control btn btn-black border border-black" type="submit">
                                     <span class="icon">
@@ -108,11 +108,11 @@
                     {% include 'includes/main-nav.html' %}
                 </nav>
             </div>
-            <div id="delivery-banner" class="row text-center">
+            <!-- <div id="delivery-banner" class="row text-center">
                 <div class="col bg-black text-white">
                     <h4 class="logo-font my-1">Free delivery on orders over £{{ free_delivery_threshold }}!</h4>                
                 </div>            
-            </div>
+            </div> -->
         </header>
 
         {% if messages %}

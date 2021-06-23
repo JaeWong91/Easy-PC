@@ -27,6 +27,12 @@ h3 {
     color: white;
 }
 
+.navbar {
+    border-bottom: 1px solid #220038;
+    background: #2200381c;
+
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: #220038;
 }
