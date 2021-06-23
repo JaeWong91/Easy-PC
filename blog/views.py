@@ -24,7 +24,12 @@ class ArticleDetailView(DetailView):
         blog_id = get_object_or_404(Post, id=self.kwargs['pk'])   # grab from post table the id of the Post we are currently on
         total_likes = blog_id.total_likes()
 
+        liked = False
+        if blog_id.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context["total_likes"] = total_likes
+        context["liked"] = liked
         return context
 
 
@@ -50,12 +55,22 @@ class DeletePostView(DeleteView):
 
 
 def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))      # 'post_id' is the name of the Like button we assigned, lookup from the Post table
 
     if request.user.is_authenticated:
-        post = get_object_or_404(Post, id=request.POST.get('post_id'))      # 'post_id' is the name of the Like button we assigned, lookup from the Post table
-        post.likes.add(request.user)        # saving a like from the user
-        messages.success(request, 'You liked this post!')
-        return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))      #pass the id of the post
+        liked = False
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)     # when user unliked post, Liked = False
+            liked = False
+            messages.success(request, 'Sorry to hear that you disliked this post!')
+            return HttpResponseRedirect(reverse('article_detail',
+                                                args=[str(pk)]))
+        else:
+            post.likes.add(request.user)
+            liked = True
+            messages.success(request, 'You liked this post!')
+            return HttpResponseRedirect(reverse('article_detail',
+                                                args=[str(pk)]))
     else:
         messages.error(request, 'You must be logged in to like an article!')
         return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))

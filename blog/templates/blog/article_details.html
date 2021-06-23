@@ -46,12 +46,34 @@
             <hr>
                 <form method="POST" action="{% url 'like_post' post.pk %}" >
                     {% csrf_token %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
-                        <span class="icon">
-                            <i class="fas fa-thumbs-up"></i>
-                        </span>
-                        Like ({{ total_likes }})
-                    </button>
+                    {% if user.is_authenticated %}
+                        {% if liked %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-black rounded-0 btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </span>
+                                Unlike ({{ total_likes }})
+                            </button>
+                        {% else %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </span>
+                                Like ({{ total_likes }})
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <p>You must be <a href="{% url 'account_login' %}">signed in</a>  to like this article.</p>
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
+                            <span class="icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </span>
+                            Like ({{ total_likes }})
+                        </button>
+                    {% endif %}
+
+                    <br>
+                    
                 </form>
             <hr>
         </div>
