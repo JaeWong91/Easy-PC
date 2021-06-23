@@ -10,6 +10,10 @@ class ProductForm(forms.ModelForm):
         fields = '__all__'
 
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    length = forms.DecimalField(label='Length (centimetres)')
+    width = forms.DecimalField(label='Width (centimetres)')
+    height = forms.DecimalField(label='Height (centimetres)')
+    weight = forms.DecimalField(label='Weight (kilograms)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

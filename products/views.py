@@ -76,7 +76,7 @@ def product_detail(request, product_id):
         # print(user_review)
 
 
-    # Add review ----------------
+    # Add review ------------
     if request.method == 'POST' and request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user)
         # print(user_review)
@@ -168,7 +168,3 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
-
-
-# @login_required(request, review_id):
-#     """ delete a review """

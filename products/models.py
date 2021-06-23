@@ -22,11 +22,11 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    length = models.DecimalField(max_digits=4, decimal_places=2)  # length, width and height in cm
-    width = models.DecimalField(max_digits=4, decimal_places=2)
-    height = models.DecimalField(max_digits=4, decimal_places=2)
+    length = models.DecimalField(max_digits=7, decimal_places=2)  # length, width and height in cm
+    width = models.DecimalField(max_digits=7, decimal_places=2)
+    height = models.DecimalField(max_digits=7, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     # product_rating = models.ForeignKey('ProductReview', on_delete=models.CASCADE )
     # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
