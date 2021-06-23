@@ -41,8 +41,20 @@
             <div class="container">
                 {{ post.body|safe }}
             </div>
-
+            
             <br><br>
+            <hr>
+                <form method="POST" action="{% url 'like_post' post.pk %}" >
+                    {% csrf_token %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
+                        <span class="icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </span>
+                        Like
+                    </button> 
+                    - {{ total_likes }}
+                </form>
+            <hr>
         </div>
     </div>
 {% endblock %}
