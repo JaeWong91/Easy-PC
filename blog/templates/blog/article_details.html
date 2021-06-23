@@ -13,18 +13,36 @@
     <div class="overlay"></div>
     <div class="row">
         <div class="col container mt-3">
-            <h2 class="logo-font text-center">{{ post.title }}</h2>
-            <p class="text-center"> By: {{ post.author.first_name }} {{ post.author.last_name }} </p>
-            <hr class="w-50 mb-1">
-            {{ post.body }}
-
-            <br><br>
-            <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
+            <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg ml-2">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
                 <span class="text-uppercase">Back</span>
             </a>
+            <h2 class="logo-font text-center">{{ post.title }}</h2>
+            <p class="text-center"> 
+                <!-- By: {{ post.author.username }} - -->
+                {{ post.post_date }}
+
+            </p>
+            {% if request.user.is_superuser %}
+                <div class="col mt-2 text-center">
+                    <a class="" href="{% url 'edit_post' post.pk %}">
+                        <strong>Edit</strong> 
+                    </a>
+                    |
+                    <a class="text-danger" href="{% url 'delete_post' post.pk %}">
+                        <strong class="text-danger">Delete</strong>
+                    </a>
+                </div>
+            {% endif %}
+
+            <hr class="w-50 mb-1">
+            <div class="container">
+                {{ post.body|safe }}
+            </div>
+
+            <br><br>
         </div>
     </div>
 {% endblock %}

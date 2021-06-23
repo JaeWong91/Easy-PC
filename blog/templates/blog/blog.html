@@ -17,7 +17,7 @@
             <hr class="w-50 mb-1">
             {% if request.user.is_superuser %}
                 <div class="row">
-                    <a href="{% url 'add_post' %}" class="mx-auto btn btn-black rounded-0 btn-lg my-3">
+                    <a href="{% url 'add_post' %}" class="mx-auto btn purple-button rounded-0 btn-lg my-3">
                         <span class="icon text-center">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -25,12 +25,32 @@
                     </a>
                 </div>
             {% endif %}
-            <ul>
+            
                 {% for post in object_list %}
-                    <li> <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{ post.author.last_name }}<br>
-                    {{ post.body }}</li>
+                    <div class="mb-4 container">
+                        <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - 
+                        
+                        <span class="text-muted">
+                            <!-- {{ post.author.first_name }} {{ post.author.last_name }} -  -->
+                            {{post.post_date }}
+                        </span>
+                        {% if request.user.is_superuser %}
+                            <small> - 
+                                <a class="" href="{% url 'edit_post' post.pk %}">
+                                    <strong>Edit</strong> 
+                                </a>
+                                |
+                                <a class="text-danger" href="{% url 'delete_post' post.pk %}">
+                                    <strong class="text-danger">Delete</strong>
+                                </a>
+                            </small>
+                        {% endif %}
+                        <br>
+                        {{ post.body|slice:":100"|safe }}...
+                    </div>
+                    
                 {% endfor %} 
-            </ul>
+            
             <hr class="w-50 mb-1">
         </div>
     </div>

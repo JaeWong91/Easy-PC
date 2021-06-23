@@ -12,17 +12,25 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="row">
-        <div class="col container mt-3">
-            
-            <h2 class="logo-font text-center">Add Post</h2>
-            <hr class="w-50 mb-3">
+        <div class="col container mt-3 text-center">
+            <h2 class="logo-font text-center text-danger">Deleting Post...</h2>
+            <br>
+
             {% if request.user.is_superuser %}
-                <div class="col">
+                <h3>"{{ post.title }}"</h3>
+
+                <hr class="w-50 mb-3">
+                <div class="col-12 d-block mx-auto text-center">
                     <div class="form-group">
                         <form method="POST" class="col-md-6 offset-md-3">
                             {% csrf_token %}
-                            {{ form|crispy }}  
-                            
+                            <br>
+                            <h4>
+                                Are you sure you wish to delete this post? 
+                                <br><br>
+                                This action is permanent! 
+                            </h4>
+                            <br>
                             <div class="col mt-2 d-block mx-auto">
                                 <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
                                     <span class="icon">
@@ -30,17 +38,17 @@
                                     </span>
                                     <span class="text-uppercase">Cancel</span>
                                 </a>
-                                <button class="btn purple-button rounded-0 btn-lg">
+                                <button class="btn btn-black rounded-0 btn-lg">
                                     <span class="icon text-center">
-                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-check"></i>
                                     </span>
-                                    <span class="text-uppercase text-center">Post</span>
+                                    <span class="text-uppercase text-center">Delete Article</span>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-            {% else %}  
+            {% else %}
                 <h3 class="text-center">Sorry, you do not have permission to create a post.</h3>
                 <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
                     <span class="icon">

@@ -73,7 +73,7 @@ def product_detail(request, product_id):
 
     if request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user).exists()   #added myself - filter the reviews by product and user and check if exists
-        print(user_review)
+        # print(user_review)
 
 
     # Add review ----------------

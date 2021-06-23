@@ -13,13 +13,12 @@
     <div class="overlay"></div>
     <div class="row">
         <div class="col container mt-3">
-            
-            <h2 class="logo-font text-center">Add Post</h2>
+            <h2 class="logo-font text-center">Edit Post</h2>
             <hr class="w-50 mb-3">
             {% if request.user.is_superuser %}
                 <div class="col">
                     <div class="form-group">
-                        <form method="POST" class="col-md-6 offset-md-3">
+                        <form method="POST" class="col-md-8 offset-md-2">
                             {% csrf_token %}
                             {{ form|crispy }}  
                             
@@ -30,18 +29,18 @@
                                     </span>
                                     <span class="text-uppercase">Cancel</span>
                                 </a>
-                                <button class="btn purple-button rounded-0 btn-lg">
+                                <button class="btn btn-black rounded-0 btn-lg">
                                     <span class="icon text-center">
-                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-check"></i>
                                     </span>
-                                    <span class="text-uppercase text-center">Post</span>
+                                    <span class="text-uppercase text-center">Update Article</span>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-            {% else %}  
-                <h3 class="text-center">Sorry, you do not have permission to create a post.</h3>
+            {% else %}
+                <h3 class="text-center">Sorry, you do not have permission to edit posts.</h3>
                 <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>

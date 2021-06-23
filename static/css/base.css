@@ -66,6 +66,19 @@ h3 {
     width: fit-content;  /* makes sure text takes up space required and no more */
 }
 
+.purple-button {
+    background: #220038;
+    color: white;
+}
+
+.purple-button:hover,
+.purple-button:active,
+.purple-button:focus {
+    background: black;
+    color: white;
+}
+
+
 .shop-now-button {
     background: #220038;
     color: white;
