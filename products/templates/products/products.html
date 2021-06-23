@@ -78,7 +78,7 @@
                                                 </p>
                                             {% endif %}
                                             
-                                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{% if product.get_rating == 0 %}No ratings yet {% else %}{{ product.get_rating|floatformat:1 }} / 5{% endif %}</small>
+                                            <div class="text-muted"><i class="fas fa-star mr-1 text-warning"></i>{% if product.get_rating == 0 %}No ratings yet {% else %}{{ product.get_rating|floatformat:1 }} / 5{% endif %}</div>
                                         </div>
                                     </div>
                                         {% if request.user.is_superuser %}
