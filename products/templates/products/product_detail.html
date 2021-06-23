@@ -190,7 +190,7 @@
             <h3 class="text-center mb-3">Reviews</h3>
             {% if product.reviews.all %}
                 {% for review in product.reviews.all %}
-                    <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">
+                    <div class="review-wrapper text-center container border-purple mb-3 py-2">
                         <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
 
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>

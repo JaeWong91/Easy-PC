@@ -6,13 +6,12 @@ from django.contrib.auth.models import User
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body')
+        fields = ('title', 'author', 'body')
 
         widgets = {
             # bootstrap 'form-control' class
             'title': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2'}),
-            # 'author': User,     try to make it so that the current sesion user is the author!!
-            # 'author': forms.Select(attrs={'class': 'border-purple rounded-0 mb-2'}),
+            'author': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2', 'value': '', 'id': 'elder', 'type': 'hidden'}),
             'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
         }
 
@@ -25,6 +24,6 @@ class EditForm(forms.ModelForm):
         widgets = {
             # bootstrap 'form-control' class
             'title': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2'}),
-            # 'author': forms.Select(attrs={'class': 'border-purple rounded-0 mb-2'}),
+            'author': forms.Select(attrs={'class': 'border-purple rounded-0 mb-2'}),
             'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
         }

@@ -31,7 +31,7 @@
                         <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - 
                         
                         <span class="text-muted">
-                            <!-- {{ post.author.first_name }} {{ post.author.last_name }} -  -->
+                            {{ post.author.username }} -
                             {{post.post_date }}
                         </span>
                         {% if request.user.is_superuser %}
