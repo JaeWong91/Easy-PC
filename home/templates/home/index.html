@@ -12,13 +12,22 @@
 {% block content %}
     <div class="container h-100">
         <div class="row h-100">
-            <div class="mt-4 mx-auto">
-                <h1 class="display-4 logo-font text-purple text-center">
-                    Enhance your PC
+            <div class="mt-5 mx-auto">
+                <h1 class="logo-font text-purple text-center col-12">
+                    Enhance Your PC
                 </h1>
-                <div class="my-5 w-100">
-                    <h4 class="text-center">
-                        <a href="{% url 'products' %}" class="logo-font shop-now-button btn btn-lg rounded-0 py-3">Browse All Products</a>
+                <h2 class="logo-font text-purple text-center col-12">
+                    Make Your PC Better
+                </h2>
+                <div class="my-5 w-100 row">
+                    <h4 class="text-center col-md-5">
+                        <a href="{% url 'products' %}" class="logo-font shop-now-button btn btn-lg rounded-0 py-3">STORE</a>
+                    </h4>
+                    
+                    <span class="col-md-2"></span>
+
+                    <h4 class="text-center col-md-5">
+                        <a href="{% url 'blog' %}" class="logo-font shop-now-button btn btn-lg rounded-0 py-3">BLOG</a>
                     </h4>
                 </div>
             </div>

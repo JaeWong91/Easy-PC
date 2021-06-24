@@ -8,6 +8,7 @@ body {
     height: calc(100vh - 164px);  /* the 164px is the height of the header, therefore we subtract this from the image */
     color: rgb(20, 20, 20);    /* CHANGE THIS */
     font-family: sans-serif;
+    height:100%;
     
 }
 
@@ -45,6 +46,40 @@ h3 {
     border-color: #220038;
 }
 
+/* --- footer --- */
+
+html {
+    /* position: relative; */
+    min-height: 100%;
+}
+
+.footer {
+    font-size: 35px;
+    position: absolute;
+    /* bottom: 0; */
+    left:0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    background-color: #220038;
+    margin-top: 20px;
+    
+}
+
+.footer-icon {
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.footer-icon:hover {
+    color: #7907c5ab;
+}
+
+.footer-text {
+    font-size: 16px;
+}
+/* --- cards ---*/
+
 .card-img-top {
     max-height: 350px;
     width: auto;
@@ -75,6 +110,10 @@ h3 {
 .purple-button {
     background: #220038;
     color: white;
+}
+
+.bg-purple  {
+    background: #220038;
 }
 
 .purple-button:hover,
@@ -161,6 +200,10 @@ h3 {
     border: 1px solid black !important;
 }
 
+.border-white {
+    border: 1px solid white !important;
+}
+
 .bg-black {
     background: #000 !important;
 }
@@ -180,7 +223,7 @@ h3 {
 }
 
 a.category-badge > span.badge:hover {
-    background: #212529 !important;   /* this colour matches the bootstrap dark class. This is to match the button with the dark class on them */
+    background: #212529 !important;   /* this colour matches the bootstrap dark class. */
     color: #fff !important;
 }
 
@@ -190,6 +233,8 @@ a.category-badge > span.badge:hover {
     position: fixed;
     bottom: 10px;
     right: 10px;
+    z-index: 999;
+    border-color: white;
 }
 
 .btt-link,
@@ -204,7 +249,7 @@ input[name='q']::placeholder {
 }
 
 .review-wrapper {
-    background-color: #22003834;
+    background-color: #2200380c;
     max-width: 500px;
 }
 
