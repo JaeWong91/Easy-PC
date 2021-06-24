@@ -21,8 +21,9 @@
                     <div class="form-group">
                         <form method="POST" class="col-md-6 offset-md-3">
                             {% csrf_token %}
+                            {{ form.media }} 
                             {{ form|crispy }}  
-                            
+                                                        
                             <div class="col mt-2 d-block mx-auto">
                                 <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
                                     <span class="icon">

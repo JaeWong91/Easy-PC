@@ -61,8 +61,19 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 logo-font">
                     <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                        <li class="list-inline-item">
+                            <small>
+                                {% if request.user.is_authenticated %}
+                                    Logged in as: <br>
+                                    {{ request.user }}
+                                {% else %}
+                                    (Not signed in)
+                                {% endif %}
+                            </small>
+                        </li>
+
                         <li class="list-inline-item dropdown">
                             <a class="text-white nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
