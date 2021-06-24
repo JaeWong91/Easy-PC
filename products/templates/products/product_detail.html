@@ -151,16 +151,18 @@
 
                         <div class="field">
                             <div class="control">
-                                <div class="select">   
-                                    Rating 
-                                    <select name="rating" id="rating">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3" selected>3</option>   
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    out of 5
+                                <div class="select">
+                                    <strong>   
+                                        Rating 
+                                        <select name="rating" id="rating" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3" selected>3</option>   
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        out of 5
+                                    </strong>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +171,7 @@
                             <label for="content" class="mt-1">Comment: </label>
 
                             <div class="container">
-                                <textarea class="form-control" name="content" id="content"></textarea>
+                                <textarea class="form-control" name="content" id="content" placeholder="Write your review here" required></textarea>
                             </div>
                         </div>
 
@@ -191,6 +193,7 @@
             <h3 class="text-center mb-3">Reviews</h3>
             {% if product.reviews.all %}
                 {% for review in product.reviews.all %}
+                    review id = {{ review.id }} <!-- showing id -->
                     <div class="review-wrapper text-center container border-purple mb-3 py-2">
                         <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
 
@@ -208,6 +211,9 @@
                     No reviews for this product yet.
                 </div>
             {% endif %}
+
+
+            
         </div>
     </div>
 {% endblock %}

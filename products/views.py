@@ -67,18 +67,17 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """ A view to show individual product detail """
-
     product = get_object_or_404(Product, pk=product_id)
     user_review = None
 
     if request.user.is_authenticated:
-        user_review = ProductReview.objects.filter(product=product, user=request.user).exists()   #added myself - filter the reviews by product and user and check if exists
-        # print(user_review)
-
+        user_review = ProductReview.objects.filter(product=product, user=request.user).exists()
+        
 
     # Add review ------------
     if request.method == 'POST' and request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user)
+        ordering = ['-id']  # try to make the ordering so latest review at the top!
         # print(user_review)
 
         if user_review:

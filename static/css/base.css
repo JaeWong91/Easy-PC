@@ -3,7 +3,9 @@ html {
 }
 
 body {
-    background: url('/media/background2.jpg') no-repeat center fixed;
+    /* background: url('/media/background2.jpg') no-repeat center fixed; */
+    /* linear gradient code taken from stackoverflow - https://stackoverflow.com/questions/6502157/transparent-background-image/6502295#6502295 */
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('/media/background2.jpg') no-repeat center fixed;
     background-size: cover;
     height: calc(100vh - 164px);  /* the 164px is the height of the header, therefore we subtract this from the image */
     color: rgb(20, 20, 20);    /* CHANGE THIS */
