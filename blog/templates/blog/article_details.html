@@ -99,10 +99,9 @@
                 <br><br>
                 <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
                 <br><br>
-                    {% for comment in post.comments.all %}
-                        <strong>
-                            {{ comment.name }} - {{ comment.date_added }}
-                        </strong> 
+                    {% for comment in post.comments.all reversed %}
+                        <strong>{{ comment.name }}</strong>  <small class="text-muted">{{ comment.date_added }}</small>
+                        
                         <br>
                         {{ comment.body }}
                         <br> <br>

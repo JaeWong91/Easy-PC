@@ -44,7 +44,7 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'blog/add_comment.html'
-    ordering = ['-id']
+    ordering = ['-pk']
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
