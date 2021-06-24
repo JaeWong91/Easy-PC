@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.models import User
 
 
@@ -27,4 +27,16 @@ class EditForm(forms.ModelForm):
             'author': forms.Select(attrs={'class': 'border-purple rounded-0 mb-2'}),
             'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
             'snippet': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body',)
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2'}),
+            'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
+            
         }

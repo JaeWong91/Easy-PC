@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="row">
+        <div class="col container mt-3">
+            
+            <h2 class="logo-font text-center">Add Comment</h2>
+            <hr class="w-50 mb-3">
+            
+            <div class="col">
+                <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data" class="col-md-6 offset-md-3">
+                        {% csrf_token %}
+                        {{ form|crispy }}  
+                                                    
+                        <div class="col mt-2 d-block mx-auto">
+                            <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <span class="icon">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                                <span class="text-uppercase">Cancel</span>
+                            </a>
+                            <button class="btn purple-button rounded-0 btn-lg">
+                                <span class="icon text-center">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text-uppercase text-center">Add Comment</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

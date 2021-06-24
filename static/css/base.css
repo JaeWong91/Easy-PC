@@ -20,7 +20,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     color: #220038;
     font-family:  'Righteous', cursive;
 }
@@ -107,6 +108,10 @@ html {
 
 .blog-card {
     border: #220038 solid 1px;
+}
+
+.blog-card:hover {
+    background-color: #22003850;
 }
 
 .article-image {

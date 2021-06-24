@@ -78,7 +78,7 @@
                 {% else %}
                     <img class="d-block mx-auto article-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
                 {% endif %}
-                <hr>
+                <hr class="w-50 mb-1">
             </div>
 
             <div class="container">
@@ -86,7 +86,31 @@
             </div>
             
             <br><br>                
-            <hr>
+            
+
+            <div class="container">
+                <hr>
+                <h4>Comments...</h4>
+                <hr>
+
+                {% if not post.comments.all %}
+                    No Comments Yet... <a href="{% url 'add_comment' post.pk %}">Add One</a>
+                {% else %}
+                <br><br>
+                <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+                <br><br>
+                    {% for comment in post.comments.all %}
+                        <strong>
+                            {{ comment.name }} - {{ comment.date_added }}
+                        </strong> 
+                        <br>
+                        {{ comment.body }}
+                        <br> <br>
+
+                        
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

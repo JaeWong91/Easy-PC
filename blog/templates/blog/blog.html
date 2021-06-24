@@ -14,9 +14,9 @@
     
     <div class="col container mt-3">
         <h2 class="logo-font text-center text-uppercase">Blog</h2>
-        <hr>
+        <hr class="w-50 mb-1">
         <h3 class="logo-font text-center">Welcome to our blog section.</h3>
-        <h3 class="logo-font text-center">Enjoy our articles below!</h3>
+        <h3 class="logo-font text-center">Read an article below!</h3>
         <hr class="w-50 mb-1">
         {% if request.user.is_superuser %}
             <div class="row">
@@ -28,7 +28,7 @@
                 </a>
             </div>
         {% endif %}
-        
+
         <div class="row">
             {% for post in object_list %}
                 <div class="col-sm-6 col-md-6 col-lg-4 my-5 d-flex justify-content-center text-center border-2">
