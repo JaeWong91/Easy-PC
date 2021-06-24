@@ -96,6 +96,19 @@ html {
     border-width: 2px !important;
 }
 
+/* .blog-thumbnail {
+    color: white;
+} */
+
+/* .tint {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+    
+} */
+
+.blog-card {
+    border: #220038 solid 1px;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;

@@ -37,14 +37,13 @@
                 </div>
             {% endif %}
 
-            <hr class="w-50 mb-1">
-            <div>
+            <hr class="w-50 mb-3">
+
+            <div class="d-block mx-auto my-3">
                 {% if post.header_image %}
-                    <img src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
+                    <img class="d-block mx-auto" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
                 {% else %}
-                    <a href="">
-                        <img class="" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
-                    </a>
+                    <img class="d-block mx-auto" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
                 {% endif %}
             </div>
 

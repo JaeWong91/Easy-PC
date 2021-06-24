@@ -11,49 +11,167 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="row">
-        <div class="col container mt-3">
-            <h2 class="logo-font text-center text-uppercase">Blog</h2>
-            <hr>
-            <h3 class="logo-font text-center">Welcome to our blog section.</h3>
-            <h3 class="logo-font text-center">Enjoy our articles below!</h3>
-            <hr class="w-50 mb-1">
-            {% if request.user.is_superuser %}
-                <div class="row">
-                    <a href="{% url 'add_post' %}" class="mx-auto btn purple-button rounded-0 btn-lg my-3">
-                        <span class="icon text-center">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text-uppercase text-center">Add Post</span>
-                    </a>
-                </div>
-            {% endif %}
-            
+    
+    <div class="col container mt-3">
+        <h2 class="logo-font text-center text-uppercase">Blog</h2>
+        <hr>
+        <h3 class="logo-font text-center">Welcome to our blog section.</h3>
+        <h3 class="logo-font text-center">Enjoy our articles below!</h3>
+        <hr class="w-50 mb-1">
+        {% if request.user.is_superuser %}
+            <div class="row">
+                <a href="{% url 'add_post' %}" class="mx-auto btn purple-button rounded-0 btn-lg my-3">
+                    <span class="icon text-center">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text-uppercase text-center">Add Post</span>
+                </a>
+            </div>
+        {% endif %}
+
+
+            <div class="row">
                 {% for post in object_list %}
-                    <div class="mb-4 container">
-                        <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - 
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-5 d-flex justify-content-center text-center border-2">
+                        <div class="card blog-card" style="width:400px">
+                            
+                            {% if post.header_image %}
+                                <img class="card-img-top rounded-0" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}">
+                            {% else %}
+                                <img class="card-img-top rounded-0" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                            {% endif %}
+                            
+                            <a class="mx-auto text-decoration-none" href="{% url 'article_detail' post.pk %}">
+                                <div class="card-body mx-auto">
+                                    <h4 class="card-title text-purple logo-font">{{ post.title }}</h4>
+                                    <p class="card-text text-purple">{{ post.snippet }}</p>
+                                    <span class="text-muted small">
+                                        Published by: {{ post.author.username }} on {{ post.post_date }}
+                                    </span>
+                                </div>
+                            </a>
+                            <br>
+                                <span class="icon text-center mx-auto mb-2">
+                                    <i class="fas fa-thumbs-up text-primary"></i> ({{ post.total_likes }})
+                                </span>
+                            {% if request.user.is_superuser %}
+                                <br>
+                                <small class="text-center">
+                                    <a class="" href="{% url 'edit_post' post.pk %}">
+                                        <strong>Edit</strong> 
+                                    </a>
+                                    |
+                                    <a class="text-danger" href="{% url 'delete_post' post.pk %}">
+                                        <strong class="text-danger">Delete</strong>
+                                    </a>
+                                </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+
+            <!-- <div class="row">
+                {% for post in object_list %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-5">
                         
-                        <span class="text-muted">
-                            {{ post.author.username }} -
-                            {{ post.post_date }}
-                        </span>
-                        {% if request.user.is_superuser %}
-                            <small> - 
-                                <a class="" href="{% url 'edit_post' post.pk %}">
-                                    <strong>Edit</strong> 
-                                </a>
-                                |
-                                <a class="text-danger" href="{% url 'delete_post' post.pk %}">
-                                    <strong class="text-danger">Delete</strong>
-                                </a>
-                            </small>
-                        {% endif %}
-                        <br>
-                        {{ post.snippet }}
+                        <a href="{% url 'article_detail' post.pk %}">
+                            <div class="card" style="width:300px">
+                                {% if post.header_image %}
+                                    <img class="card-img-top rounded-0" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}">
+                                {% else %}
+                                    <img class="card-img-top rounded-0" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                                {% endif %}
+                                <div class="card-img-overlay">
+                                <h4 class="card-title">{{ post.title }}</h4>
+                                <br>
+                                <p class="card-text">{{ post.snippet }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        
                         
                     </div>
-                {% endfor %} 
-            <hr class="w-50 mb-1">
-        </div>
+                {% endfor %}
+            </div>   -->
+
+
+                <!-- <div class="row">
+
+                {% for post in object_list %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-3 text-center">
+                        <div class="card border-purple border-rounded-0 mb-3" style="max-width: 400px;">
+                            <a href="{% url 'article_detail' post.pk %}" class="text-decoration-none">
+                                <div class="card-header bg-transparent border-success"><h5 class="logo-font"> {{ post.title }} </h5></div>
+                                <div class="card-body text-success" >
+                                    {% if post.header_image %}
+                                        <img class="blog-thumbnail card-img-top" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
+                                    {% else %}
+                                        <a href="">
+                                            <img class="" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                                        </a>
+                                    {% endif %}
+                                    <h5 class="card-title">{{ post.snippet }}</h5>
+                                    <p class="card-text"></p>
+                                </div>
+                                <div class="card-footer bg-transparent border-success">
+                                    <span class="text-muted">
+                                        {{ post.author.username }} - {{ post.post_date }} - 
+                                    </span>
+                                    <span class="icon">
+                                        <i class="fas fa-thumbs-up"> </i>({{ post.total_likes }})
+                                    </span>
+                                    {% if request.user.is_superuser %}
+                                        <br>
+                                        <small> - 
+                                            <a class="" href="{% url 'edit_post' post.pk %}">
+                                                <strong>Edit</strong> 
+                                            </a>
+                                            |
+                                            <a class="text-danger" href="{% url 'delete_post' post.pk %}">
+                                                <strong class="text-danger">Delete</strong>
+                                            </a>
+                                        </small>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}  
+                </div> -->
+
+
+
+
+            <!-- {% for post in object_list %}
+                <div class="mb-4 container">
+                    <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - 
+                    
+                    <span class="text-muted">
+                        {{ post.author.username }} -
+                        {{ post.post_date }}
+                    </span>
+                    {% if request.user.is_superuser %}
+                        <small> - 
+                            <a class="" href="{% url 'edit_post' post.pk %}">
+                                <strong>Edit</strong> 
+                            </a>
+                            |
+                            <a class="text-danger" href="{% url 'delete_post' post.pk %}">
+                                <strong class="text-danger">Delete</strong>
+                            </a>
+                        </small>
+                    {% endif %}
+                    <br>
+                    {{ post.snippet }}
+                </div>
+            {% endfor %} -->
+
+
+        
     </div>
+    
 {% endblock %}
