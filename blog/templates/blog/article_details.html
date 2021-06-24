@@ -11,8 +11,8 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="row">
-        <div class="col container mt-3">
+    <div class="row container mx-auto">
+        <div class="col container mt-3 mx-auto">
             <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg ml-2">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
@@ -23,8 +23,41 @@
             <p class="text-center"> 
                 By: {{ post.author.username }} -
                 {{ post.post_date }}
-
             </p>
+
+            <div class="text-center">
+                <form method="POST" action="{% url 'like_post' post.pk %}" >
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        {% if liked %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </span>
+                                Unlike ({{ total_likes }})
+                            </button>
+                                <p>Thanks for liking this post!</p>
+                        {% else %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-black rounded-0 btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </span>
+                                Like ({{ total_likes }})
+                            </button>
+                            <p>Enjoyed the article? Give it a like!</p>
+                        {% endif %}
+                    {% else %}
+                        <p>You must be <a href="{% url 'account_login' %}">signed in</a>  to like this article.</p>
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-black rounded-0 btn-sm">
+                            <span class="icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </span>
+                            Like ({{ total_likes }})
+                        </button>
+                    {% endif %}
+                </form>
+            </div>
+
             {% if request.user.is_superuser %}
                 <div class="col mt-2 text-center">
                     <a class="" href="{% url 'edit_post' post.pk %}">
@@ -39,51 +72,20 @@
 
             <hr class="w-50 mb-3">
 
-            <div class="d-block mx-auto my-3">
+            <div class="col d-block mx-auto my-3">
                 {% if post.header_image %}
-                    <img class="d-block mx-auto" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
+                    <img class="d-block mx-auto article-image" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
                 {% else %}
-                    <img class="d-block mx-auto" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                    <img class="d-block mx-auto article-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
                 {% endif %}
+                <hr>
             </div>
 
             <div class="container">
                 {{ post.body|safe }}
             </div>
             
-            <br><br>
-            <hr>
-                <form method="POST" action="{% url 'like_post' post.pk %}" >
-                    {% csrf_token %}
-                    {% if user.is_authenticated %}
-                        {% if liked %}
-                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-black rounded-0 btn-sm">
-                                <span class="icon">
-                                    <i class="fas fa-thumbs-down"></i>
-                                </span>
-                                Unlike ({{ total_likes }})
-                            </button>
-                        {% else %}
-                            <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
-                                <span class="icon">
-                                    <i class="fas fa-thumbs-up"></i>
-                                </span>
-                                Like ({{ total_likes }})
-                            </button>
-                        {% endif %}
-                    {% else %}
-                        <p>You must be <a href="{% url 'account_login' %}">signed in</a>  to like this article.</p>
-                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn purple-button rounded-0 btn-sm">
-                            <span class="icon">
-                                <i class="fas fa-thumbs-up"></i>
-                            </span>
-                            Like ({{ total_likes }})
-                        </button>
-                    {% endif %}
-
-                    <br>
-                    
-                </form>
+            <br><br>                
             <hr>
         </div>
     </div>

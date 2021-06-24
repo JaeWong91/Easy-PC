@@ -28,3 +28,11 @@ If you would like make a test purchase, please use the below details:
 
 
 
+## Credits
+
+ - For the articles, these were taken from PC Gamer and Tech Reviews. They have excellent content reltated to computing and gaming.
+
+
+
+
+

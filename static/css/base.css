@@ -109,6 +109,11 @@ html {
     border: #220038 solid 1px;
 }
 
+.article-image {
+    width: 600px;
+    max-width: 100%;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
