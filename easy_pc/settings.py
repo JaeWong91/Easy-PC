@@ -137,7 +137,7 @@ else:
 
 
 # DATABASES = {
-#     'default': dj_database_url.parse('postgres:')
+#     'default': dj_database_url.parse('postgres')
 # }
 
 

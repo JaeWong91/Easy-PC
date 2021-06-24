@@ -38,6 +38,16 @@
             {% endif %}
 
             <hr class="w-50 mb-1">
+            <div>
+                {% if post.header_image %}
+                    <img src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}"> 
+                {% else %}
+                    <a href="">
+                        <img class="" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                    </a>
+                {% endif %}
+            </div>
+
             <div class="container">
                 {{ post.body|safe }}
             </div>

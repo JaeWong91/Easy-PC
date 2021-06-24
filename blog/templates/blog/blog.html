@@ -13,7 +13,10 @@
     <div class="overlay"></div>
     <div class="row">
         <div class="col container mt-3">
-            <h2 class="logo-font text-center">Blog</h2>
+            <h2 class="logo-font text-center text-uppercase">Blog</h2>
+            <hr>
+            <h3 class="logo-font text-center">Welcome to our blog section.</h3>
+            <h3 class="logo-font text-center">Enjoy our articles below!</h3>
             <hr class="w-50 mb-1">
             {% if request.user.is_superuser %}
                 <div class="row">
@@ -32,7 +35,7 @@
                         
                         <span class="text-muted">
                             {{ post.author.username }} -
-                            {{post.post_date }}
+                            {{ post.post_date }}
                         </span>
                         {% if request.user.is_superuser %}
                             <small> - 
@@ -46,11 +49,10 @@
                             </small>
                         {% endif %}
                         <br>
-                        {{ post.body|slice:":100"|safe }}
+                        {{ post.snippet }}
+                        
                     </div>
-                    
                 {% endfor %} 
-            
             <hr class="w-50 mb-1">
         </div>
     </div>

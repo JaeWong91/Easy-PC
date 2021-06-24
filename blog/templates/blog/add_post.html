@@ -19,7 +19,7 @@
             {% if request.user.is_superuser %}
                 <div class="col">
                     <div class="form-group">
-                        <form method="POST" class="col-md-6 offset-md-3">
+                        <form method="POST" enctype="multipart/form-data" class="col-md-6 offset-md-3">
                             {% csrf_token %}
                             {{ form.media }} 
                             {{ form|crispy }}  
