@@ -27,22 +27,27 @@ class Product(models.Model):
     height = models.DecimalField(max_digits=7, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    # product_rating = models.ForeignKey('ProductReview', on_delete=models.CASCADE )
-    # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    # product_rating = models.ForeignKey('ProductReview', related_name='product_rating', on_delete=models.CASCADE )
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
 
-    def get_rating(self):
+    def update_rating(self):   # changed from get_rating
         # get sum of all ratings in review
-        total = sum(int(review['rating']) for review in self.reviews.values())
+        total = sum(int(review['individual_rating']) for review in self.reviews.values())   # changed 'rating' to 'individual rating'
+        self.rating == 0
 
         if self.reviews.count() > 0:
-            return total / self.reviews.count()
+            self.rating = total / self.reviews.count()
+            self.save()
+            # return total / self.reviews.count()
         else:
-            return 0
+            self.rating == 0
+            self.save()
+            # return 0
 
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM
@@ -50,7 +55,7 @@ class ProductReview(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True)
-    rating = models.SmallIntegerField(choices=[(i, i) for i in range(1, 6)])
+    individual_rating = models.SmallIntegerField(choices=[(i, i) for i in range(1, 6)])
 
     date_added = models.DateTimeField(auto_now_add=True)
 

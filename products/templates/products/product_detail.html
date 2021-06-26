@@ -38,7 +38,7 @@
                         </p>
                     {% endif %}
 
-                    <small class="text-muted"><i class="fas fa-star mr-1 text-warning"></i>{% if product.get_rating == 0 %}No ratings yet {% else %}{{ product.get_rating|floatformat:1 }} / 5{% endif %} </small>
+                    <small class="text-muted"><i class="fas fa-star mr-1 text-warning"></i>{% if product.rating == null %}No ratings yet {% else %}{{ product.rating|floatformat:1 }} / 5{% endif %} </small> <!--changed 'get_rating' to just 'rating'-->
                     
                     {% if request.user.is_superuser %}
                         <!-- Button trigger modal -->
@@ -154,7 +154,7 @@
                                 <div class="select">
                                     <strong>   
                                         Rating 
-                                        <select name="rating" id="rating" required>
+                                        <select name="individual_rating" id="individual_rating" required>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3" selected>3</option>   
@@ -194,11 +194,13 @@
             {% if product.reviews.all %}
                 {% for review in product.reviews.all reversed %}
                     <div class="review-wrapper text-center container border-purple mb-3 py-2">
-                        <p><strong>Rating: </strong> {{ review.rating }} / 5</p>
+                        <p><strong>Rating: </strong> {{ review.individual_rating }} / 5</p>
 
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>
-                        <p><small>Reviewed by {{ review.user }} on {{ review.date_added|date:"d-m-y" }}</small></p>
-                        <p>date/time (for testing) {{ review.date_added }}</p>
+                        <p><small>Reviewed by <strong>{{ review.user }}</strong> on {{ review.date_added }}</small></p>
+
+                        
+
                     </div>
                 {% empty %}
                     <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">

@@ -12,6 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'price',
         'image',
+        'rating',
     )
 
     ordering = ('sku',)
@@ -31,7 +32,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
         'product',
         'user',
         'content',
-        'rating',
+        'individual_rating',
         'date_added',
     )
 
