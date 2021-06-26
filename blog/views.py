@@ -55,9 +55,9 @@ class AddCommentView(CreateView):
 
 
 class DeleteCommentView(DeleteView):    # how to make only superuser to delete comments and redirect back to article page???
-        model = Comment
-        template_name = 'blog/delete_comment.html'
-        success_url = reverse_lazy('blog')
+    model = Comment
+    template_name = 'blog/delete_comment.html'
+    success_url = reverse_lazy('blog')
 
     # def get_success_url(self):
     #     # return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})

@@ -100,11 +100,14 @@
                 <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
                 <br><br>
                     {% for comment in post.comments.all reversed %}
+                        
                         <strong>{{ comment.name }}</strong>  <small class="text-muted">{{ comment.date_added }}</small>
-                        | 
-                        <a class="text-danger" href="{% url 'delete_comment' comment.pk %}">
-                            <strong class="text-danger">Delete</strong>
-                        </a>
+                        {% if request.user.is_superuser %}
+                            | 
+                            <a class="text-danger" href="{% url 'delete_comment' comment.pk %}">
+                                <strong class="text-danger">Delete</strong>
+                            </a>
+                        {% endif %}
                         
                         <br>
                         {{ comment.body }}
