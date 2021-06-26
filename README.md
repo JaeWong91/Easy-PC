@@ -121,18 +121,38 @@ If you would like make a test purchase, please use the below details:
 - The navigation bar will also let the user know if they are signed in or not.
 - The Sub navigation bar houses the product types and Blog page. Each product type has a drop-down menu for sub categories such as for PC components, this houses links to graphics cards, processors and storage etc.
 
+
 ![](readme-images/navbar.PNG)
 
 - The footer houses social media links and also the company email address and contact number.
 
 ![](readme-images/footer.PNG)
 
+- On small devices, the main navigation will be compressed into a slide menu which can be opened using the menu icon.
+
+![](readme-images/mobile-header.PNG)
 
 ## Homepage
  - There are two buttons on the homepage which will redirect the user to either the STORE or the BLOG pages.
 
 ![](readme-images/homepage.PNG)
 
+
+## Login Page
+
+- a simple login page for registered users to sign in. If the user has been validated, a toast message is displayed and will redirect the user to the Homepage. If either the username or password is incorrect, the toast message will display an error to inform the user. If a user has forgotten their password, they can request for an email in order to reset their password.
+
+## Registration Page
+
+- Non-user will have to input a valid username, email address and password on the form. The submit button will send their infromation to the Database. The user will be sent an email for verification. 
+
+## Profile Page
+
+- Users can check or update their delivery information and view their order history, if any.
+
+## Products Page
+
+- Display products using Bootstrap cards along with the associated image of the products. By clicking the picture or product's name the user will be redirected to the product detail page. On Clicking the "sort by .." dropdown button, the user will be able to display all the products for their desired sorting (price, name, rating or category). At the bottom right of the screen is a Back to Top button. If the user is a SuperUser, Edit/Delete button will be displayed to allow easy Product Management.
 
 
 ## Credits
