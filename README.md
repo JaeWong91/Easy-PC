@@ -219,9 +219,34 @@ If you would like make a test purchase, please use the below details:
 
 ![](readme-images/article.PNG)
 
+
+# Technologies Used
+
+## Languages
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) - Used for the overall structure of the website.
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - Used for styling, colouring and layout of the site.
+- [Javascript](https://www.javascript.com/) - Used to make the website interactive. This was used for the modal and sliders.
+- [Python](https://www.python.org/) - Used for creating functions that handle backend processes such as adding information to the database.
+
+
+## Frameworks, Libraries & Programs
+
+- [Bootstrap](https://getbootstrap.com/) - Additional styling and adding responsiveness to the website
+- [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templating language. This is used for generating HTML templates and accessing/processing data sent from the frontend.
+- [jQuery](https://jquery.com/) - A Javascript library that simplifies manipulation of of the HTML DOM.
+- [Github](https://github.com/) - GitHub is used as a storage space for the project, where it can then be pushed onto Gitpod.
+- [GitPod](https://www.gitpod.io/) - Git allowed version control and also to add, commit to Git and push to GitHub.
+- [Balsamiq](https://balsamiq.com/wireframes/?gclid=CjwKCAjwkdL6BRAREiwA-kiczJUq8U_iMFrVp1xv8FmLNPGDxIxjk-d9dlu_X88qo79PfI1VkZbcaxoC5-QQAvD_BwE) - The wire frame software used for the initial design of the website.
+- [Google Fonts](https://fonts.google.com/) - Used to apply the font families.
+- [PicResize](https://picresize.com/) - This is used to resize large images down to smaller files.
+- [Responsinator](http://www.responsinator.com/?url=) - Used to test the site responsiveness on various screen resolution sizes. This is to ensure the layout is intended as designed.
+- [Font Awesome](https://fontawesome.com/) - Used to apply icons such as the social media icons.
+
+
 ## Credits
 
- - [amazon](amazon.co.uk) - All of the products listed are takn from amazon.
+ - [amazon](amazon.co.uk) - All of the products listed are taken from amazon along with the product images.
 
  - For the articles, these were taken from [PC Gamer](https://www.pcgamer.com/uk/) and [Tech Reviews](https://www.techradar.com/reviews). They have excellent content reltated to computing and gaming.
 

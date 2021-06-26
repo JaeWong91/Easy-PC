@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="row">
+        <div class="col container mt-3 text-center">
+            <h2 class="logo-font text-center text-danger">Deleting Post...</h2>
+            <br>
+
+            {% if request.user.is_superuser %}
+                <h3>"{{ comment.body }}"</h3>
+                <h3>"by: {{ comment.name }}"</h3>
+
+                <hr class="w-50 mb-3">
+                <div class="col-12 d-block mx-auto text-center">
+                    <div class="form-group">
+                        <form method="POST" class="col-md-6 offset-md-3">
+                            {% csrf_token %}
+                            <br>
+                            <h4>
+                                Are you sure you wish to delete this comment? 
+                                <br><br>
+                                This action is permanent! 
+                            </h4>
+                            <br>
+                            <div class="col mt-2 d-block mx-auto">
+                                <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                    <span class="icon">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <span class="text-uppercase">Cancel</span>
+                                </a>
+                                <button class="btn btn-black rounded-0 btn-lg">
+                                    <span class="icon text-center">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="text-uppercase text-center">Delete Article</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <h3 class="text-center">Sorry, you do not have permission to delete this comment.</h3>
+                <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Back</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

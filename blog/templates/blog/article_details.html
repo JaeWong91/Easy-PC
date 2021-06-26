@@ -101,6 +101,10 @@
                 <br><br>
                     {% for comment in post.comments.all reversed %}
                         <strong>{{ comment.name }}</strong>  <small class="text-muted">{{ comment.date_added }}</small>
+                        | 
+                        <a class="text-danger" href="{% url 'delete_comment' comment.pk %}">
+                            <strong class="text-danger">Delete</strong>
+                        </a>
                         
                         <br>
                         {{ comment.body }}

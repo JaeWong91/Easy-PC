@@ -11,7 +11,7 @@ class BlogView(ListView):
     model = Post
     template_name = 'blog/blog.html'
     ordering = ['-id']
-    
+
 
 class ArticleDetailView(DetailView):
     model = Post
@@ -52,6 +52,16 @@ class AddCommentView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})
+
+
+class DeleteCommentView(DeleteView):    # how to make only superuser to delete comments and redirect back to article page???
+        model = Comment
+        template_name = 'blog/delete_comment.html'
+        success_url = reverse_lazy('blog')
+
+    # def get_success_url(self):
+    #     # return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})
+    #     return HttpResponseRedirect(reverse('article_detail'))
 
 
 class UpdatePostView(UpdateView):
