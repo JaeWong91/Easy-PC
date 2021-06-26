@@ -27,7 +27,6 @@ class Product(models.Model):
     height = models.DecimalField(max_digits=7, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    # product_rating = models.ForeignKey('ProductReview', related_name='product_rating', on_delete=models.CASCADE )
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)

@@ -86,7 +86,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'bag.contexts.bag_contents',    # this will enable access to the bag contents in any templates
+                'bag.contexts.bag_contents',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -96,7 +96,7 @@ TEMPLATES = [
     },
 ]
 
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'  # to store messages in the session. not often required but due to gitpod, it is for us
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -123,23 +123,23 @@ WSGI_APPLICATION = 'easy_pc.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # comment below out to migrate to Heroku
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+# if 'DATABASE_URL' in os.environ:
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
 
 
-# DATABASES = {
-#     'default': dj_database_url.parse('postgres:')
-# }
-#
+DATABASES = {
+    'default': dj_database_url.parse('postgres://ljbmfxsgnurska:6138f588e75aaedbb6740e1a35474b99bfde29399aa12563b73332216ce05c48@ec2-54-155-92-75.eu-west-1.compute.amazonaws.com:5432/d6lno14accevcu')
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -219,8 +219,8 @@ if 'USE_AWS' in os.environ:
 FREE_DELIVERY_THRESHOLD = 70
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')      # we get this from environment giving it an empty default value
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')      # I set this on gitpod dashboard settings on variables
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 
