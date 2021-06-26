@@ -43,11 +43,9 @@ class Product(models.Model):
         if self.reviews.count() > 0:
             self.rating = total / self.reviews.count()
             self.save()
-            # return total / self.reviews.count()
         else:
             self.rating == 0
             self.save()
-            # return 0
 
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM

@@ -77,18 +77,16 @@ def product_detail(request, product_id):
     # Add review ------------
     if request.method == 'POST' and request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user)  # filter product review by user
-        ordering = ['-id']  # try to make the ordering so latest review at the top!
-        # print(user_review)
 
         if user_review:
             messages.error(request, 'You have already reviewed this product.')
             return redirect('product_detail', product_id=product_id)
         else:
-            individual_rating = request.POST.get('individual_rating', 3)  # set default to 3   # changed from "rating" to "individual rating"
+            individual_rating = request.POST.get('individual_rating', 3)
             content = request.POST.get('content', '')
             review = ProductReview.objects.create(product=product, user=request.user, individual_rating=individual_rating, content=content)
 
-            product.update_rating()     # try to trigger the method to update rating
+            product.update_rating()
             product.save()
 
             messages.success(request, 'Thank you for leaving your review!')
@@ -105,32 +103,27 @@ def product_detail(request, product_id):
 # Delete Review ----- TESTING THIS------------------------------
 
 
+@login_required
+# def delete_review(request, *args, **kwargs):
+def delete_review(request, review_id):
+    # review = get_object_or_404(ProductReview, review_id=self.kwargs['pk'])  # defind and get the product reviews
 
-#    def delete_review(request, *args, **kwargs):
-#     review = get_object_or_404(ProductReview, review_id=self.kwargs['pk'])  # defind and get the product reviews
-#     product = get_object_or_404(Product, review_id=self.kwargs['pk'])
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('products'))
 
-#     if not request.user.is_superuser:
-#         messages.error(request, 'Sorry, only store owners can do that.')
-#         return redirect(reverse('home'))
+    # review = get_object_or_404(ProductReview, pk=pk)  # defind and get the product reviews
+    review = get_object_or_404(ProductReview, pk=review_id)
+    # product = get_object_or_404(Product, pk=product_id)
 
-#     review = get_object_or_404(ProductReview, pk=product_id)
-#     review.delete()
+    review.delete()
 
-#     Product.update_rating()     # try to trigger the method to update rating
-#     Product.save()
+    # product.update_rating()     # try to trigger the method to update rating
+    # product.save()
 
-#     messages.success(request, 'Review deleted!')
-#     return render(request, 'products/product_detail.html')
+    messages.success(request, 'Review deleted!')
 
-
-
-
-    # if request.method == 'POST' and request.user.is_superuser:
-    #     user_review = ProductReview.objects.filter(review=review)  # filter product by user
-
-    #     product.delete()
-    #     messages.success(request, 'Review deleted!')
+    return redirect(reverse('products'))
 
 # Testing delete review above ^^^-------------------------------
 
