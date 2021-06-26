@@ -193,9 +193,11 @@
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>
                         <p><small>Reviewed by <strong>{{ review.user }}</strong> on {{ review.date_added }}</small></p>
 
-                        <a class="text-danger" href="{% url 'delete_review' review.pk %}">
-                            <strong class="text-danger">Delete</strong>
-                        </a>
+                        {% if request.user.is_superuser %}
+                            <a class="text-danger" href="{% url 'delete_review' review.pk %}">
+                                <strong class="text-danger">Delete</strong>
+                            </a>
+                        {% endif %}
 
                     </div>
                 {% empty %}
