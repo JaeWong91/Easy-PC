@@ -57,7 +57,6 @@ If you would like make a test purchase, please use the below details:
 
 
 
-
 # Design
 
 ## Colour Scheme
@@ -162,21 +161,32 @@ If you would like make a test purchase, please use the below details:
 
 ![](readme-images/products.PNG)
 
+
+## Product Search Function
+
+- The search bar at the top of every page on the site will allow the visitor to submit search queries to find a product. Once a query is submmited, the page will display products which contains the searched term and display how many products were found.
+
+![](readme-images/search.PNG)
+
+
+
 ## Product Detail Page
 
 - In the detail page, to the left, the associated image of the product is displayed. To the right the title, description, product dimensions and weight. Plus/Minus icons are placed either side of Number Input Field to increase and decrease quantity. Two buttons - 'Add to Bag' and 'Keep Shopping' - are placed below the quantity input field. The Keep Shopping button will returns the user to the All product page. The add to bag button will add the item(s) to the cart. A toast message will advise the user that their item is added to the bag. If the total is below £75, an additional message will let the user know how much they would need to spend to qualify for free delivery. The bottom of this page will house the reviews, if any are submitted.
 
-## Product Detail - Reviews
+- Only registered and valid users are able to write a review for a product. The average rating for each product will be updated everytime a review is added. A user is limited to one review per product where there is a sentence to notify the user has already placed a review.
 
-- Only registered and valid users are able to write a review for a product. The average rating for each product will be updated everytime a review is added.
+![](readme-images/product-detail.PNG)
 
 ## Bag Page
 
 - This page will display the items the user has currently added into their shopping bag. They will be able to adjust the quantity of the products and view the totals and subtotals. The "Secure Checkout" button will redirect the user to the checkout page. The "Keep Shopping" button will return the user to the products page.
 
+![](readme-images/bag.PNG)
+
 ## Checkout Page
 
-- After the user finalizes their purchase, they can move ahead to do a checkout and make the payment of the purchase. This page is divided into two parts, on the right shows the order summary, on the left shows a form requesting for information about the user. The user must fill in the form on the left before being able to continue the checkout process. There are required fields in the form and this information will be saved to the DB and can be check in the user profile page if the user has logged in or creates an account prior to checkout. The credit card field is linked to STRIPE and the form inherits the stripe validations associated with credit cards. Buttons at the bottom allow the user to go back to the shopping cart and make adjustments to the quantity purchased or move ahead to pay and complete the order. Once the user submits the payment information a purple loading screen appears to show that the payment is being processed.
+- After the user finalizes their purchase, they can move ahead to do a checkout and make the payment of the purchase. This page is divided into two parts, on the right shows the order summary, on the left shows a form requesting for information about the user. The user must fill in the form on the left before being able to continue the checkout process. There are required fields in the form and this information will be saved to the DB and can be checked in the user profile page if the user has logged in or created an account prior to checkout. The credit card field is linked to STRIPE and the form inherits the stripe validations associated with credit cards. Buttons at the bottom allow the user to go back to the shopping cart and make adjustments to the quantity purchased or move ahead to pay and complete the order. Once the user submits the payment information a purple loading screen appears to show that the payment is being processed.
 
 If you would like make a test purchase, please use the below details:
 
@@ -185,13 +195,20 @@ If you would like make a test purchase, please use the below details:
 - CVC: 424
 - ZIP: 42424
 
+![](readme-images/checkout.PNG)
+
 ## Checkout Success / Order Confirmation Page
 
 - The order confirmation page lists out the order number and the detail of the purchase along with the subtotal and grandtotal. User can check for their order in the profile page. The user can browse back to the products page by clicking the "Browse more lashes" button below the form. The user will also be sent a confirmation email for reference.
 
+![](readme-images/confirmation.PNG)
+
+
 ## Blog page
 
 - The blog posts will be available for all users to read. Only the SuperUser is able to add new blog posts. Each blog article on this page are stylised using bootstrap card elements, with their associated header images resized at the top of each card. The title and subheadings are placed under the image, along with the author and date published. There is also a thumbs-up icon where the number in brackets show how many liked the the article has received.
+
+![](readme-images/blog.PNG)
 
 
 ## Article page
@@ -199,6 +216,8 @@ If you would like make a test purchase, please use the below details:
 - This will show the whole article with the main image above. The text is stylised using django's own integrated 'django-ckeditor'. This will allow the author to format the article as they see fit. There is a like button where only validated users can click. This will add a like and only one like is permissable per user. The button is interactive where as a user can change their mind and dislike the article, where the button will become a thumbs-down. Toast messages will notify the user of their like or dislike.
 
 - The bottom of the article page is the comment section. Any visitor of the site, registered or not, are able to leave a comment.
+
+![](readme-images/article.PNG)
 
 ## Credits
 
