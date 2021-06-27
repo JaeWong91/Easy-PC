@@ -49,8 +49,10 @@ class Product(models.Model):
 
 # this is from 'Code With Stein' video tutorial - https://www.youtube.com/watch?v=Y5vvGQyHtpM
 class ProductReview(models.Model):
-    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='reviews',
+                                on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews',
+                             on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True)
     individual_rating = models.SmallIntegerField(choices=[(i, i) for i in range(1, 6)])
 
