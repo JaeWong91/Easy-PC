@@ -195,6 +195,8 @@ If you would like make a test purchase, please use the below details:
 - CVC: 424
 - ZIP: 42424
 
+Please note that due to Stripe restrictions, single orders that exceed £10,000 are not permitted. Defensive measures on the website is in place to notify if a customer holds items in their shopping bag that exceed this.
+
 ![](readme-images/checkout.PNG)
 
 ## Checkout Success / Order Confirmation Page
