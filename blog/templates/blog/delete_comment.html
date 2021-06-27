@@ -17,8 +17,7 @@
             <br>
 
             {% if request.user.is_superuser %}
-                <h3>"{{ comment.body }}"</h3>
-                <h3>"by: {{ comment.name }}"</h3>
+                
 
                 <hr class="w-50 mb-3">
                 <div class="col-12 d-block mx-auto text-center">
@@ -26,12 +25,13 @@
                         <form method="POST" class="col-md-6 offset-md-3">
                             {% csrf_token %}
                             <br>
-                            <h4>
-                                Are you sure you wish to delete this comment? 
-                                <br><br>
-                                This action is permanent! 
-                            </h4>
+                            <strong>Are you sure you wish to delete this comment?</strong>
+                            <br><br>
+                            <h3>Comment: "{{ comment.body }}"</h3>
+                            <h3>by: {{ comment.name }}</h3>
                             <br>
+                            <strong text-red> This action is permanent! </strong>
+                            <br><br>
                             <div class="col mt-2 d-block mx-auto">
                                 <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-0 btn-lg">
                                     <span class="icon">
@@ -43,7 +43,7 @@
                                     <span class="icon text-center">
                                         <i class="fas fa-check"></i>
                                     </span>
-                                    <span class="text-uppercase text-center">Delete Article</span>
+                                    <span class="text-uppercase text-center">Delete Comment</span>
                                 </button>
                             </div>
                         </form>

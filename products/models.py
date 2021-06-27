@@ -43,7 +43,7 @@ class Product(models.Model):
             self.rating = total / self.reviews.count()
             self.save()
         else:
-            self.rating == 0
+            self.rating = False
             self.save()
 
 

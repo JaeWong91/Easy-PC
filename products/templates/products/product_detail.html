@@ -41,13 +41,13 @@
                     <small class="text-muted"><i class="fas fa-star mr-1 text-warning"></i>
                         {% if product.rating  %}
                             {{ product.rating|floatformat:1 }} / 5 
-                        {% else %} 
-                                No ratings yet
+                        {% else  %} 
+                            No ratings yet
                         {% endif %}
                     </small> <!--changed 'get_rating' to just 'rating'-->
                     
 
-
+                    <!-- deleting product -->
                     {% if request.user.is_superuser %}
                         <!-- Button trigger modal -->
                         <div class="row">

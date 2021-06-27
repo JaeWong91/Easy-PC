@@ -60,8 +60,7 @@ class DeleteCommentView(DeleteView):    # how to make only superuser to delete c
     success_url = reverse_lazy('blog')
 
     # def get_success_url(self):
-    #     # return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})
-    #     return HttpResponseRedirect(reverse('article_detail'))
+    #     # return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})  # After deleting comment, try to redirect back to article page
 
 
 class UpdatePostView(UpdateView):
