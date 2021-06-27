@@ -10,10 +10,10 @@ class PostForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2'}),
-            'author': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2', 'value': '', 'id': 'elder', 'type': 'hidden'}),
+            'author': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2',
+                                             'value': '', 'id': 'elder', 'type': 'hidden'}),
             'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
             'snippet': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
-            
         }
 
 

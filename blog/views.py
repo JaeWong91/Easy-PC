@@ -20,7 +20,7 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(ArticleDetailView, self).get_context_data()
 
-        blog_id = get_object_or_404(Post, id=self.kwargs['pk'])   # grab from post table the id of the Post we are currently on
+        blog_id = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = blog_id.total_likes()
 
         liked = False
@@ -36,8 +36,6 @@ class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/add_post.html'
-    # fields = '__all__'
-    # fields = ('title', 'body')
 
 
 class AddCommentView(CreateView):
@@ -54,20 +52,16 @@ class AddCommentView(CreateView):
         return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})
 
 
-class DeleteCommentView(DeleteView):    # how to make only superuser to delete comments and redirect back to article page???
+class DeleteCommentView(DeleteView):
     model = Comment
     template_name = 'blog/delete_comment.html'
     success_url = reverse_lazy('blog')
-
-    # def get_success_url(self):
-    #     # return reverse_lazy('article_detail', kwargs={'pk': self.kwargs['pk']})  # After deleting comment, try to redirect back to article page
 
 
 class UpdatePostView(UpdateView):
     model = Post
     form_class = EditForm
     template_name = 'blog/edit_post.html'
-    # fields = ['title', 'body']
 
 
 class DeletePostView(DeleteView):
@@ -77,12 +71,12 @@ class DeletePostView(DeleteView):
 
 
 def LikeView(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))      # 'post_id' is the name of the Like button we assigned, lookup from the Post table
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
 
     if request.user.is_authenticated:
         liked = False
         if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)     # when user unliked post, Liked = False
+            post.likes.remove(request.user)
             liked = False
             messages.success(request, 'Sorry to hear that you disliked this post!')
             return HttpResponseRedirect(reverse('article_detail',
