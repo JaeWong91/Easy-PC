@@ -72,7 +72,7 @@ If you would like make a test purchase, please use the below details:
 
 # Wireframes
 
- - The initial designs or Wireframes were created using Balsamiq. This can be found [here]().
+ - The initial designs or Wireframes were created using Balsamiq. This can be found [here](readme-images/MS4-Easy-PC-wireframes.pdf).
 
  # Database Models and Schema
 
@@ -254,6 +254,14 @@ If you would like make a test purchase, please use the below details:
 - [AWS S3](https://aws.amazon.com/) - The cloud service for hosting media and static files.
 - [Stripe](https://stripe.com/gb) - This was used for test transactions.
 
+## Testing
+
+- [W3C Markup Validator](https://validator.w3.org/)
+- [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/)
+- [JShint](https://jshint.com/)
+- [cornflakes-linter(flake8)](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter) - For the Python code, the cornflakes-linter(flake8) extension is installed in the development environment. This gave a live validation check for the code. There are warnings about lines being too long but having spoke to other developers, the maximum 79 characters per line is rather out-dated where screens were much smaller in previous generations.
+- [Google Chrome](https://www.google.co.uk/chrome/?brand=FHFK&gclid=CjwKCAjww-CGBhALEiwAQzWxOiXnVAU7qEiD9ykUo3VELjaivlvMcpmSTkKLr0vSMqvjnv7nKkY8WxoCED8QAvD_BwE&gclsrc=aw.ds) and [Firefox](https://www.mozilla.org/en-GB/firefox/new/) - These two browsers are arguably the most popular. These browsers were used to test the visuals and functionality of the website throughout the development process.
+- [TEMPMAIL](https://temp-mail.org/en/) - this is used for temporary email addresses when creating/registering an account. Verification of th e account is done where the site will send an email.
 
 # Deployment
 
@@ -330,7 +338,7 @@ os.environ["STRIPE_WH_SECRET"] = "<Your Key>"
 ### 8. Log into the Django admin
 - after running the web app, add /admin at the end of the URL and log in with the superuser credentials from the previous step
 
-### Heroku Deployment
+## Heroku Deployment
 
 ### 1. Create a `requirements.txt` file
 - paste the following command into the terminal:
@@ -422,20 +430,36 @@ ALLOWED_HOSTS = ['<your Heroku app URL>', 'localhost]
 - go to 'Automatic Deployment' > click 'Enable Automatic Deploys'
 
 ### 15. Test automatic deployment
-* your code should be automatically deployed to Heroku after pushing your code
+- your code should be automatically deployed to Heroku after pushing your code
 
 ### Hosting Files with AWS
 
 In order to host static files and images with AWS, you will need to create an [AWS account](https://aws.amazon.com/).
 Additionally, you have to create:
-* an AWS S3 Bucket
-* a Bucket Policy
-* a Group
-* an Access Policy
-* a User
+- an AWS S3 Bucket
+- a Bucket Policy
+- a Group
+- an Access Policy
+- a User
+
+This is a rather long process. You can find more detailed information on Amazon Storage Service [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html).
+When this is done, you will need to connect [Django to S3](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
 
 
+# E-mails through Gmail
 
+In order for the project take advantage of Django's automatic e-mail service, you will need a Gmail account.
+
+- go to the account settings
+- go to the 'Other Google Account Settings'
+- go to the 'Security' tab
+- turn on 2-step verification
+- go back to 'Security' tab and click on 'App passwords'
+- select 'Mail' in the app dropdown
+- select 'Other' in the device dropdown
+- copy the 16-character password
+- go to Heroku and put it under `EMAIL_HOST_PASS` config variable
+- put the Gmail e-mail under the `EMAIL_HOST_USER` config var
 
 
 
@@ -443,8 +467,13 @@ Additionally, you have to create:
 ## Credits
 
  - [Amazon](amazon.co.uk) - All of the products listed are taken from Amazon along with the product images.
-
  - For the articles, these were taken from [PC Gamer](https://www.pcgamer.com/uk/) and [Tech Reviews](https://www.techradar.com/reviews). They have excellent content reltated to computing and gaming.
+ - CodeInstitute - Many thanks to student support tutoring service. Extremely helpful where I was stuck in the project.
+ - Slack - Cases where there were issues previous students encountered, this was super helpful.
+ - [Codemy.com](https://www.youtube.com/channel/UCFB0dxMudkws1q8w5NJEAmw) - Youtube channel assisted with developing my Blog app. This was extremely detailed and helped greatly in the developing process.
+ - My mentor Spencer Bariball. He gave me the idea to add reviews to products and extend the project with a Blog App. Extremely grateful for the review of the project.
+ - Friends and family - My friends and family were kind enough to browse through the website and test the functionality.
+ 
 
 
 
