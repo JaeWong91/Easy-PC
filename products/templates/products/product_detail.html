@@ -197,22 +197,48 @@
                 {% for review in product.reviews.all reversed %}
                     <div class="review-wrapper text-center container border-purple mb-3 py-2">
                         <p><strong>Rating: </strong> {{ review.individual_rating }} / 5</p>
-
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>
                         <p><small>Reviewed by <strong>{{ review.user }}</strong> on {{ review.date_added }}</small></p>
                         
-
                         {% if request.user.is_superuser or request.user == review.user %}
-                            <a class="" href="{% url 'edit_review' review.pk %}">
-                                <strong class="">Edit</strong>
-                            </a>
-                            |
-                            <a class="text-danger" href="{% url 'delete_review' review.pk %}">
-                                <strong class="text-danger">Delete</strong>
-                            </a>
+                            <!-- Button trigger modal -->
+                            <div class="row">
+                                <div class="col">
+                                    <button class="edit-button">
+                                        <a class="text-decoration-none p-0" href="{% url 'edit_review' review.id %}"> 
+                                            <strong>Edit</strong> 
+                                        </a>
+                                    </button>
+                                    <button type="button" class="modal-trigger delete-button border-1" data-toggle="modal" data-target="#confirm-delete-{{ review.id }}">
+                                        <strong>Delete</strong>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirm-delete-{{ review.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title text-danger text-center" id="ModalLabel">WARNING</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body text-purple text-center">
+                                        <p> Are you sure you wish to remove the below review: </p>
+                                        <p> <span class="text-danger">"{{ review.content }}"</span> </p>
+                                        <p> <span class="text-danger">By: "{{ review.user }}" ?</span> </p>
+                                        <p> This action is irreversible! </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button  data-target="#confirm-delete-{{ product.id }}" type="button" class="btn btn-danger"><a href="{% url 'delete_review' review.pk %}" class="text-white">Delete</a></button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                         {% endif %}
-
-
                     </div>
                 {% empty %}
                     <div class="review-wrapper text-center container w-60 border-purple mb-3 py-2">
@@ -224,9 +250,6 @@
                     No reviews for this product yet.
                 </div>
             {% endif %}
-
-
-            
         </div>
     </div>
 {% endblock %}
