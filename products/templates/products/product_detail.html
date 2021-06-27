@@ -39,9 +39,9 @@
                     {% endif %}
 
                     <small class="text-muted"><i class="fas fa-star mr-1 text-warning"></i>
-                        {% if product.rating  %}
+                        {% if product.rating > 0  %}
                             {{ product.rating|floatformat:1 }} / 5 
-                        {% else  %} 
+                        {% else %} 
                             No ratings yet
                         {% endif %}
                     </small> <!--changed 'get_rating' to just 'rating'-->
@@ -203,8 +203,8 @@
                         
 
                         {% if request.user.is_superuser or request.user == review.user %}
-                            <a class="text-danger" href="{% url 'edit_review' review.pk %}">
-                                <strong class="text-danger">Edit</strong>
+                            <a class="" href="{% url 'edit_review' review.pk %}">
+                                <strong class="">Edit</strong>
                             </a>
                             |
                             <a class="text-danger" href="{% url 'delete_review' review.pk %}">

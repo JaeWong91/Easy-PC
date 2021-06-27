@@ -105,20 +105,21 @@ def product_detail(request, product_id):
 
 @login_required
 def delete_review(request, review_id):
-
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-
-        return redirect(reverse('products'))
-
     review = get_object_or_404(ProductReview, pk=review_id)
-    review.delete()
 
-    review.product.update_rating()
-    review.product.save()
+    if request.user == review.user or request.user.is_superuser:
+        review = get_object_or_404(ProductReview, pk=review_id)
+        review.delete()
 
-    messages.success(request, 'You have successfully removed the review!')
-    return redirect(reverse('product_detail', args=[review.product.id]))  # this works!
+        review.product.update_rating()
+        review.product.save()
+
+        messages.success(request, 'You have successfully removed the review!')
+        return redirect(reverse('product_detail', args=[review.product.id]))  # this works!
+
+    else:
+        messages.error(request, 'Sorry, you are not permitted to delete this review.')
+        return redirect(reverse('product_detail', args=[review.product.id]))
 
 # Testing delete review above ^^^-------------------------------
 
@@ -130,7 +131,6 @@ def edit_review(request, review_id):
 
     review = get_object_or_404(ProductReview, pk=review_id)     # pre-filling the form by getting the product using get_object_or_404
 
-    
     if request.user == review.user or request.user.is_superuser:
         if request.method == "POST":
             form = ReviewForm(request.POST, instance=review)

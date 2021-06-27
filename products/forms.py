@@ -31,3 +31,5 @@ class ReviewForm(forms.ModelForm):
         model = ProductReview
         exclude = ('user', 'product',)
         # fields = ('name', 'body',)
+
+    # individual_rating = forms.(label='New Rating',)

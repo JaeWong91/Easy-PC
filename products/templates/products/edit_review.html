@@ -20,21 +20,26 @@
             </div>
         </div>
 
+        <div>
+           <h4>You are editting your existing review:</h4> 
+            <p><strong>Product: {{ review.product }}</strong></p>
+            <p><strong>Rating: {{ review.individual_rating }}</strong></p>
+            <p><strong>Comment: "{{ review.content }}"</strong></p>
+            <hr>
+        </div>
+
         <div class="row">
             <div class="col-12 col-md-6">
                 <form method="POST" action="{% url 'edit_review' review.id %}" class="form mb-2" enctype="multipart/form-data">       
                     {% csrf_token %}
                     {{ form|crispy }}
-
-
-
                     <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update REview</button>
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'product_detail' review.product.id %}">Cancel</a>
+                        <button class="btn btn-black rounded-0" type="submit">Update Review</button>
                     </div>
                 </form>
-                
             </div>
         </div>
+        
     </div>
 {% endblock %}
