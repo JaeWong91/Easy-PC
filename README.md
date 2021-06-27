@@ -235,18 +235,55 @@ If you would like make a test purchase, please use the below details:
 - [Bootstrap](https://getbootstrap.com/) - Additional styling and adding responsiveness to the website
 - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templating language. This is used for generating HTML templates and accessing/processing data sent from the frontend.
 - [jQuery](https://jquery.com/) - A Javascript library that simplifies manipulation of of the HTML DOM.
-- [Github](https://github.com/) - GitHub is used as a storage space for the project, where it can then be pushed onto Gitpod.
+- [Github](https://gist.github.com/derhuerst/1b15ff4652a867391f03) - GitHub is used as a storage space for the project, where it can then be pushed onto Gitpod.
 - [GitPod](https://www.gitpod.io/) - Git allowed version control and also to add, commit to Git and push to GitHub.
 - [Balsamiq](https://balsamiq.com/wireframes/?gclid=CjwKCAjwkdL6BRAREiwA-kiczJUq8U_iMFrVp1xv8FmLNPGDxIxjk-d9dlu_X88qo79PfI1VkZbcaxoC5-QQAvD_BwE) - The wire frame software used for the initial design of the website.
 - [Google Fonts](https://fonts.google.com/) - Used to apply the font families.
 - [PicResize](https://picresize.com/) - This is used to resize large images down to smaller files.
 - [Responsinator](http://www.responsinator.com/?url=) - Used to test the site responsiveness on various screen resolution sizes. This is to ensure the layout is intended as designed.
 - [Font Awesome](https://fontawesome.com/) - Used to apply icons such as the social media icons.
+- [SQLite](https://www.sqlite.org/index.html) - The default Django database used in development.
+- [PostgreSQL](https://www.postgresql.org/) - The production database through Heroku.
+- [AWS S3](https://aws.amazon.com/) - The cloud service for hosting media and static files.
+- [Stripe](https://stripe.com/gb) - This was used for test transactions.
+
+
+# Deployment
+
+The webapp was developed with [Gitpod IDE](https://www.gitpod.io/). [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03) was used for verion control and [GitHub](https://github.com/) for hosting the project's repository. 
+The project is hosted on [Heroku](https://dashboard.heroku.com/apps) while [AWS S3](https://aws.amazon.com/) is hosting static files and images.
+
+## Local Deployment
+
+There are some requirements to run this project locally on your own IDE. These include:
+
+- IDE of your choice. For example - [Gitpod](https://www.gitpod.io/)
+- Have the following installed:
+    - [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+    - [Python](https://www.python.org/)
+    - [pip](https://pip.pypa.io/en/stable/installing/)
+
+You will also need accounts for the following services. These are all free of charge:
+
+- [Gmail](https://mail.google.com/mail/u/0/#inbox)
+- [Stripe](https://stripe.com/gb)
+- [AWS S3](https://aws.amazon.com/)
+
+### 1.Clone this Repository
+
+-   Once you have installed the requirements above, enter the below command into the terminal:
+    - `git clone https://https://github.com/JaeWong91/Easy-PC`
+- An alternate method is to go to [Easy-PC repository](git clone https://https://github.com/JaeWong91/Easy-PC) and 'Code' button and select the 'Download ZIP' option. This way you can save the files onto your own local machine.
+- For more information on this, please visit [GitHub's help pages](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
+
+### 2. Set up the environment variables
+
+
 
 
 ## Credits
 
- - [amazon](amazon.co.uk) - All of the products listed are taken from amazon along with the product images.
+ - [Amazon](amazon.co.uk) - All of the products listed are taken from Amazon along with the product images.
 
  - For the articles, these were taken from [PC Gamer](https://www.pcgamer.com/uk/) and [Tech Reviews](https://www.techradar.com/reviews). They have excellent content reltated to computing and gaming.
 
