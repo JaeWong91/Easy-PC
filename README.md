@@ -219,6 +219,13 @@ If you would like make a test purchase, please use the below details:
 
 ![](readme-images/article.PNG)
 
+## Custom 404 Page
+
+- For cases where a data has been removed and no longer exists, it is possible for a user to access a page which no longer exists. A custom error page has been created for a more user friendly experience.
+
+
+
+
 
 # Technologies Used
 
