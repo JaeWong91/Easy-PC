@@ -86,8 +86,7 @@
             </div>
             
             <br><br>                
-            
-
+        
             <div class="container">
                 <hr>
                 <h4>Comments...</h4>
@@ -100,7 +99,6 @@
                 <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
                 <br><br>
                     {% for comment in post.comments.all reversed %}
-                        
                         <strong>{{ comment.name }}</strong>  <small class="text-muted">{{ comment.date_added }}</small>
                         {% if request.user.is_superuser %}
                             | 
@@ -108,12 +106,10 @@
                                 <strong class="text-danger">Delete</strong>
                             </a>
                         {% endif %}
-                        
+        
                         <br>
                         {{ comment.body }}
-                        <br> <br>
-
-                        
+                        <br><br>
                     {% endfor %}
                 {% endif %}
             </div>
