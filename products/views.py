@@ -110,20 +110,20 @@ def delete_review(request, review_id):
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
+
         return redirect(reverse('products'))
 
-    # review = get_object_or_404(ProductReview, pk=pk)  # defind and get the product reviews
     review = get_object_or_404(ProductReview, pk=review_id)
-    # product = get_object_or_404(Product, pk=product_id)
-
+    print(review.product.id)
+    # product = get_object_or_404(Product, id=product_id)
     review.delete()
 
-    # product.update_rating()     # try to trigger the method to update rating
-    # product.save()
+    # review.product.update_rating()     # try to trigger the method to update rating
+    # review.product.save()
 
     messages.success(request, 'Review deleted!')
-
-    return redirect(reverse('products'))
+    # return redirect(reverse('products'))
+    return redirect(reverse('product_detail', args=[review.product.id]))  # this works!
 
 # Testing delete review above ^^^-------------------------------
 
