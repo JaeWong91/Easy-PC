@@ -22,10 +22,10 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    length = models.DecimalField(max_digits=7, decimal_places=2)  # length, width and height in cm
+    length = models.DecimalField(max_digits=7, decimal_places=2)
     width = models.DecimalField(max_digits=7, decimal_places=2)
     height = models.DecimalField(max_digits=7, decimal_places=2)
-    weight = models.DecimalField(max_digits=5, decimal_places=2)   # weight in kg
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
@@ -34,9 +34,9 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def update_rating(self):   # changed from get_rating
+    def update_rating(self):
         # get sum of all ratings in review
-        total = sum(int(review['individual_rating']) for review in self.reviews.values())   # changed 'rating' to 'individual rating'
+        total = sum(int(review['individual_rating']) for review in self.reviews.values())
         self.rating == 0
 
         if self.reviews.count() > 0:

@@ -14,7 +14,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)      # if request POST, create a new instance of the user profile from the form using the post data. and tell it that the 'instance' is the 'profile' on line 10
+        form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your profile has been updated successfully')

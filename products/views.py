@@ -2,58 +2,52 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q  # special object called Q to generate a search query such that we want the term to be searched in either the product NAME or DESCRIPTION
+from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category, ProductReview
 from .forms import ProductForm, ReviewForm
-
-# Create your views here.
 
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()
-    query = None    # we start with None so we don't get an error loading the page without a search term.
+    query = None
     categories = None
     sort = None
     direction = None
 
     if request.GET:
-        if 'sort' in request.GET:       # check whether 'sort' is in request.GET
-            sortkey = request.GET['sort']   # if it is, then we set it equal to both 'sort' and 'sortkey' (which will be 'NONE' at this point).
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
-                sortkey = 'lower_name'   # then we rename 'sortkey' to 'lower_name' in the event the user is sorting by name
-                products = products.annotate(lower_name=Lower('name'))  # then we annotate the current list of products with a new field.
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
-                sortkey = 'category__name'  # the double underscore here allows us to drill into a related model
+                sortkey = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
-                if direction == 'desc':         # then check whether the direction is descending in order to decide whether to reverse the order
+                if direction == 'desc':
                     sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)   # finally, this is the order by model method
+            products = products.order_by(sortkey)
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            # the double underscore '__' is a common syntax in django when making queries. Using is here means we're looking for the name field of the category model.
-            # We are able to do this because category and product are related with a foreign key
             products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)  # converting the list of strings of category names passed through the URL into a list of actual category objects so we can access all their fields in the template.
+            categories = Category.objects.filter(name__in=categories)
 
-        if 'q' in request.GET:  # we named the text input in the form as 'q'. this checks if 'q' is in request.GET
+        if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")  # when nothing is entered, it will show error message and return to products page
+                messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
 
-            # here we set the variable "queries" equal to the Q object
-            # the pipe | is the OR statement. the "i" in icontains makes the queries case insensitive
             queries = Q(name__icontains=query) | Q(description__icontains=query)
-            products = products.filter(queries)  # now we pass them to the filter method in order to actually filter the products
+            products = products.filter(queries)
 
-    current_sorting = f'{sort}_{direction}'  # since we have both the sort and direction variables stored, this string formatting will return it to th e template
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'products': products,
@@ -73,10 +67,9 @@ def product_detail(request, product_id):
     if request.user.is_authenticated:
         user_review = ProductReview.objects.filter(product=product, user=request.user).exists()
 
-
     # Add review ------------
     if request.method == 'POST' and request.user.is_authenticated:
-        user_review = ProductReview.objects.filter(product=product, user=request.user)  # filter product review by user
+        user_review = ProductReview.objects.filter(product=product, user=request.user)
 
         if user_review:
             messages.error(request, 'You have already reviewed this product.')
@@ -84,7 +77,8 @@ def product_detail(request, product_id):
         else:
             individual_rating = request.POST.get('individual_rating', 3)
             content = request.POST.get('content', '')
-            review = ProductReview.objects.create(product=product, user=request.user, individual_rating=individual_rating, content=content)
+            review = ProductReview.objects.create(product=product, user=request.user,
+                                                  individual_rating=individual_rating, content=content)
 
             product.update_rating()
             product.save()
@@ -100,9 +94,7 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-# Delete Review ----- TESTING THIS------------------------------
-
-
+# Delete Review
 @login_required
 def delete_review(request, review_id):
     review = get_object_or_404(ProductReview, pk=review_id)
@@ -115,21 +107,19 @@ def delete_review(request, review_id):
         review.product.save()
 
         messages.success(request, 'You have successfully removed the review!')
-        return redirect(reverse('product_detail', args=[review.product.id]))  # this works!
+        return redirect(reverse('product_detail', args=[review.product.id]))
 
     else:
         messages.error(request, 'Sorry, you are not permitted to delete this review.')
         return redirect(reverse('product_detail', args=[review.product.id]))
 
-# Testing delete review above ^^^-------------------------------
 
-
-# TESTING EDIT REVIEW -----------
+# Edit Review
 @login_required
 def edit_review(request, review_id):
     """ Edit a review of a product """
-
-    review = get_object_or_404(ProductReview, pk=review_id)     # pre-filling the form by getting the product using get_object_or_404
+    # pre-filling the form by getting the product using get_object_or_404
+    review = get_object_or_404(ProductReview, pk=review_id)
 
     if request.user == review.user or request.user.is_superuser:
         if request.method == "POST":
@@ -144,7 +134,8 @@ def edit_review(request, review_id):
             else:
                 messages.error(request, 'Unable to update review. Please check the form is valid.')
         else:
-            form = ReviewForm(instance=review)        # instantiating a product form using the product
+            # instantiating a product form using the product
+            form = ReviewForm(instance=review)
             messages.info(request, f'You are editing your review for {review.product}')
 
     else:
@@ -160,9 +151,6 @@ def edit_review(request, review_id):
     return render(request, template, context)
 
 
-# TESTING EDIT REVIEW ----------- ^^^^^^
-
-
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -173,9 +161,10 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()       # store the product when calling form.save
+            # store the product when calling form.save
+            product = form.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))      # send the product id to the redirect URL, this way it will redirect to the product detail page of recently added product
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
@@ -196,7 +185,7 @@ def edit_product(request, product_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    product = get_object_or_404(Product, pk=product_id)     # pre-filling the form by getting the product using get_object_or_404
+    product = get_object_or_404(Product, pk=product_id)
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
@@ -206,7 +195,7 @@ def edit_product(request, product_id):
         else:
             messages.error(request, 'Unable to update product. Please check the form is valid.')
     else:
-        form = ProductForm(instance=product)        # instantiating a product form using the product
+        form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
 
     template = 'products/edit_product.html'

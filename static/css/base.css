@@ -8,10 +8,9 @@ body {
     background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('/media/background2.jpg') no-repeat center fixed;
     background-size: cover;
     height: calc(100vh - 164px);  /* the 164px is the height of the header, therefore we subtract this from the image */
-    color: rgb(20, 20, 20);    /* CHANGE THIS */
+    color: rgb(20, 20, 20);
     font-family: sans-serif;
     height:100%;
-    
 }
 
 .logo-font {
@@ -52,20 +51,16 @@ h4 {
 /* --- footer --- */
 
 html {
-    /* position: relative; */
     min-height: 100%;
 }
 
 .footer {
     font-size: 35px;
     position: absolute;
-    /* bottom: 0; */
     left:0;
     width: 100%;
-    /* Set the fixed height of the footer here */
     background-color: #220038;
     margin-top: 20px;
-    
 }
 
 .footer-icon {
@@ -97,15 +92,6 @@ html {
     border-width: 2px !important;
 }
 
-/* .blog-thumbnail {
-    color: white;
-} */
-
-/* .tint {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
-    
-} */
-
 .blog-card {
     border: #220038 solid 1px;
 }
@@ -129,7 +115,7 @@ html {
 }
 
 .main-logo-link {
-    width: fit-content;  /* makes sure text takes up space required and no more */
+    width: fit-content;
 }
 
 .purple-button {
@@ -244,11 +230,11 @@ html {
     left: 0;
     position: fixed;
     background: white;
-    z-index: -1;    /* this will ensure the overlay sits behind the content */
+    z-index: -1;
 }
 
 a.category-badge > span.badge:hover {
-    background: #212529 !important;   /* this colour matches the bootstrap dark class. */
+    background: #212529 !important;
     color: #fff !important;
 }
 
@@ -507,4 +493,3 @@ input[name='q']::placeholder {
         padding: .25rem .5rem !important;
     }
 }
-

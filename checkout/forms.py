@@ -15,8 +15,8 @@ class OrderForm(forms.ModelForm):
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
         """
-        super().__init__(*args, **kwargs)       # first call the default init method to set the form up as it would be by default
-        placeholders = {                        # dictionary of placeholders to show up in the form fields
+        super().__init__(*args, **kwargs)
+        placeholders = {
             'full_name': 'Full Name',
             'email': 'Email Address',
             'phone_number': 'Phone Number',
@@ -27,13 +27,13 @@ class OrderForm(forms.ModelForm):
             'county': 'County, State or Locality',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True   # set the autofocus attribute on the full name field to true so the cursor will start in the full name field when the user loads page
-        for field in self.fields:                                   # iterate through the forms fields to add a star if its a required field from the model
+        self.fields['full_name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
             if field != 'country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:
                     placeholder = placeholders[field]
-                self.fields[field].widget.attrs['placeholder'] = placeholder        # setting all the placeholder attributes to their values in the dicitonary above
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'     # add css class
-            self.fields[field].label = False                                    # remove form fields as will not need them   
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            self.fields[field].label = False

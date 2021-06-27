@@ -9,7 +9,8 @@ class ProductForm(forms.ModelForm):
         model = Product
         exclude = ('rating',)
 
-    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    image = forms.ImageField(label='Image', required=False,
+                             widget=CustomClearableFileInput)
     length = forms.DecimalField(label='Length (centimetres)')
     width = forms.DecimalField(label='Width (centimetres)')
     height = forms.DecimalField(label='Height (centimetres)')
@@ -29,7 +30,7 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = ProductReview
-        exclude = ('user', 'product',)
-        # fields = ('name', 'body',)
+        fields = ('content', 'individual_rating',)
 
     # individual_rating = forms.(label='New Rating',)
+    content = forms.CharField(label='Comment')
