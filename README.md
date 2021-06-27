@@ -280,10 +280,162 @@ You will also need accounts for the following services. These are all free of ch
 
 -   Once you have installed the requirements above, enter the below command into the terminal:
     - `git clone https://https://github.com/JaeWong91/Easy-PC`
-- An alternate method is to go to [Easy-PC repository](git clone https://https://github.com/JaeWong91/Easy-PC) and 'Code' button and select the 'Download ZIP' option. This way you can save the files onto your own local machine.
+- An alternate method is to go to [Easy-PC repository](https://https://github.com/JaeWong91/Easy-PC) and 'Code' button and select the 'Download ZIP' option. This way you can save the files onto your own local machine.
 - For more information on this, please visit [GitHub's help pages](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
 
 ### 2. Set up the environment variables
+
+ - create an `.env.py` file in the root directory
+ - add `.env.py` to the `.gitignore` file in the root directory
+ - add the following environment variables to `.env`:
+ ```bash
+import os
+os.environ["DEVELOPMENT"] = "True"
+os.environ["SECRET_KEY"] = "<Your Key>"
+os.environ["STRIPE_PUBLIC_KEY"] = "<Your Key>"
+os.environ["STRIPE_SECRET_KEY"] = "<Your Key>"
+os.environ["STRIPE_WH_SECRET"] = "<Your Key>"
+ ```
+
+- if you are working on GitPod, you can set these variables in the settings.
+
+### 3. Install requirements from the `requirements.txt` file
+
+ - copy and paste the below command into the terminal:
+    - `pip3 install -r requirements.txt`
+
+### 4. Migrate the models to create a database
+
+- paste the following commands into the terminal:
+    - `python3 manage.py makemigrations`
+    - `python3 manage.py migrate`
+
+### 5. Load the data fixtures in this exact order
+
+- paste the following commands into the terminal:
+    - `python3 manage.py loaddata categories`
+    - `python3 manage.py loaddata products`
+    - `python3 manage.py loaddata blog`
+
+### 6. Create a Superuser (a user with admin rights)
+- paste the following command into the terminal:
+    - `python3 manage.py createsuperuser`
+
+    - enter an e-mail, username and password for the superuser
+
+### 7. Run the web app
+- paste the command into the terminal:
+    - `python3 manage.py runserver`
+
+### 8. Log into the Django admin
+- after running the web app, add /admin at the end of the URL and log in with the superuser credentials from the previous step
+
+### Heroku Deployment
+
+### 1. Create a `requirements.txt` file
+- paste the following command into the terminal:
+    - `pip freeze > requirements.txt`
+
+### 2. Create a `Procfile`
+- create a `Procfile` in the root directory
+- add the following code into it:
+    - `web: gunicorn ecosio.wsgi:application`
+
+### 3. Push the code to GitHub
+- paste the following commands into the terminal:
+    - `git add .`
+    - `git commit -m "<your commit note>"`
+    - `git push`
+
+### 4. Create a new app on Heroku
+- create a new app (click on 'New' > 'Create new app')
+- give it a unique name
+- set region closest to you
+
+### 5. Set Heroku Postgres
+- go to 'Resources' tab
+- search for 'Heroku Postgres'
+- select the 'Hobby Dev' free plan
+
+### 6. Set config variables in Heroku
+
+| **Key**   | **Value**   |
+| --------- | ----------- |
+| AWS_ACCESS_KEY_ID | < your AWS access key ID > |
+| AWS_SECRET_ACCESS_KEY | < your AWS secret access key > |
+| DATABASE_URL | < your postgres database URL > |
+| EMAIL_HOST_PASS | < 16-character password from Gmail > |
+| EMAIL_HOST_USER | < your Gmail > |
+| SECRET_KEY | < your secret key > |
+| STRIPE_PUBLIC_KEY | < your stripe public key > |
+| STRIPE_SECRET_KEY | < your stripe secret key > |
+| STRIPE_WH_SECRET | < your stripe webhook key > |
+| USE_AWS | True |
+
+### 7. Set up new database
+- in `settings.py`:
+    - import dj_database_url
+    - comment out `DATABASES` (temporarily, **do not commit/push this code to GitHub until instructed so**)
+    - add the following code:
+```bash
+DATABASES = {
+        'default': dj_database_url.parse("<your Postrgres database URL>")
+    }
+```
+
+### 8. Migrate the models to Postgres database
+- paste the following commands into the terminal:
+    - `python3 manage.py makemigrations`
+    - `python3 manage.py migrate`
+
+### 9. Load the data fixtures in this exact order
+- paste the following commands into the terminal:
+    - `python3 manage.py loaddata categories`
+    - `python3 manage.py loaddata products`
+    - `python3 manage.py loaddata blog`
+
+### 10. Create a superuser (user with admin rights)
+- paste the following command into the terminal:
+    - `python3 manage.py createsuperuser`
+- enter an e-mail, username and password for the superuser
+
+### 11. Correct the `settings.py` database from step 7.
+- uncomment the `DATABASES`
+- remove the code added in step 7.
+
+### 12. Add the hostname of Heroku app to allowed EMAIL_HOST_USER
+- in `settings.py`:
+    - add the following code:
+```bash
+ALLOWED_HOSTS = ['<your Heroku app URL>', 'localhost]
+```
+
+### 13. Push the code to GitHub
+- paste the following commands into the terminal:
+    - `git add .`
+    - `git commit -m "<your commit note>"`
+    - `git push`
+
+### 14. Set up automatic deployment to Heroku (**optional**)
+- in Heroku go to 'Deploy' > 'Deployment method' > 'Connect to GitHub'
+- search for your repository and click on it
+- go to 'Automatic Deployment' > click 'Enable Automatic Deploys'
+
+### 15. Test automatic deployment
+* your code should be automatically deployed to Heroku after pushing your code
+
+### Hosting Files with AWS
+
+In order to host static files and images with AWS, you will need to create an [AWS account](https://aws.amazon.com/).
+Additionally, you have to create:
+* an AWS S3 Bucket
+* a Bucket Policy
+* a Group
+* an Access Policy
+* a User
+
+
+
 
 
 
