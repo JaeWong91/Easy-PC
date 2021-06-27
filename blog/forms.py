@@ -38,5 +38,4 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'border-purple rounded-0 mb-2'}),
             'body': forms.Textarea(attrs={'class': 'border-purple rounded-0 mb-2'}),
-            
         }

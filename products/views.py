@@ -6,7 +6,7 @@ from django.db.models import Q  # special object called Q to generate a search q
 from django.db.models.functions import Lower
 
 from .models import Product, Category, ProductReview
-from .forms import ProductForm
+from .forms import ProductForm, ReviewForm
 
 # Create your views here.
 
@@ -104,9 +104,7 @@ def product_detail(request, product_id):
 
 
 @login_required
-# def delete_review(request, *args, **kwargs):
 def delete_review(request, review_id):
-    # review = get_object_or_404(ProductReview, review_id=self.kwargs['pk'])  # defind and get the product reviews
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -114,19 +112,55 @@ def delete_review(request, review_id):
         return redirect(reverse('products'))
 
     review = get_object_or_404(ProductReview, pk=review_id)
-    # print(review.product.id) # testing
-    # product = get_object_or_404(Product, id=product_id)
     review.delete()
 
-    review.product.update_rating()     # try to trigger the method to update rating
+    review.product.update_rating()
     review.product.save()
 
     messages.success(request, 'You have successfully removed the review!')
-    # return redirect(reverse('products'))
     return redirect(reverse('product_detail', args=[review.product.id]))  # this works!
 
 # Testing delete review above ^^^-------------------------------
 
+
+# TESTING EDIT REVIEW -----------
+@login_required
+def edit_review(request, review_id):
+    """ Edit a review of a product """
+
+    review = get_object_or_404(ProductReview, pk=review_id)     # pre-filling the form by getting the product using get_object_or_404
+
+    
+    if request.user == review.user or request.user.is_superuser:
+        if request.method == "POST":
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                form.save()
+                review.product.update_rating()
+                review.product.save()
+                messages.success(request, 'Successfully updated review!!')
+
+                return redirect(reverse('product_detail', args=[review.product.id]))
+            else:
+                messages.error(request, 'Unable to update review. Please check the form is valid.')
+        else:
+            form = ReviewForm(instance=review)        # instantiating a product form using the product
+            messages.info(request, f'You are editing your review for {review.product}')
+
+    else:
+        messages.error(request, 'Sorry, you are not allowed to edit this review.')
+        return redirect(reverse('product_detail', args=[review.product.id]))
+
+    template = 'products/edit_review.html'
+    context = {
+        'form': form,
+        'review': review,
+    }
+
+    return render(request, template, context)
+
+
+# TESTING EDIT REVIEW ----------- ^^^^^^
 
 
 @login_required

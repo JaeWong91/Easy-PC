@@ -200,12 +200,18 @@
 
                         <p><strong>Comment:</strong> "{{ review.content }}"</p>
                         <p><small>Reviewed by <strong>{{ review.user }}</strong> on {{ review.date_added }}</small></p>
+                        
 
-                        {% if request.user.is_superuser %}
+                        {% if request.user.is_superuser or request.user == review.user %}
+                            <a class="text-danger" href="{% url 'edit_review' review.pk %}">
+                                <strong class="text-danger">Edit</strong>
+                            </a>
+                            |
                             <a class="text-danger" href="{% url 'delete_review' review.pk %}">
                                 <strong class="text-danger">Delete</strong>
                             </a>
                         {% endif %}
+
 
                     </div>
                 {% empty %}
