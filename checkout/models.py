@@ -62,10 +62,6 @@ class Order(models.Model):
         return self.order_number
 
 
-# The basic idea here. Is when a user checks out.
-# We'll first use the information they put into the payment form to create an order instance.
-# And then we'll iterate through the items in the shopping bag.
-# Creating an order line item for each one. Attaching it to the order.
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
