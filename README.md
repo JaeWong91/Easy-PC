@@ -49,6 +49,7 @@ If you would like make a test purchase, please use the below details:
 - As an Administrative User:
 
     - I would like to add a new product to the database.
+    - I would like to delete an existing product.
     - I would like to edit existing product details.
     - I would like to create new blog posts.
     - I would like to edit an existing blog post.
