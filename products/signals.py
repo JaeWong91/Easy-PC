@@ -18,4 +18,3 @@ def update_on_delete(sender, instance, **kwargs):
     Update rating on review delete
     """
     instance.product.update_rating()
-    # instance.review.update_rating()
