@@ -5,7 +5,6 @@ from .views import (BlogView, ArticleDetailView,
                     LikeView, AddCommentView, DeleteCommentView)
 
 urlpatterns = [
-    #path('', views.blog, name='blog'),
     path('', BlogView.as_view(), name='blog'),
     path('', BlogView.as_view(), name='blog'),
     path('article/<int:pk>', ArticleDetailView.as_view(), name='article_detail'),
