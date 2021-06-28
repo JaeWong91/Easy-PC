@@ -232,6 +232,11 @@ Please note that due to Stripe restrictions, single orders that exceed £10,000 
 
 - For cases where errors occur such as data has been removed and no longer exists, it is possible for a user to access a page which no longer exists. I believe that custom error pages are essential and give a more friendly user experience as errors will always occur.
 
+## Future Features
+
+- User password reset without the use of a reset email request.
+- An advanced product category feature such as selection boxes to select what categories they want on screen.
+- Home page - A possible carousel to display latest products and latest blog articles.
 
 
 # Technologies Used
