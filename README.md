@@ -1,4 +1,7 @@
 # [Easy-PC](https://easy-pc-jw.herokuapp.com/)
+
+![https://easy-pc-jw.herokuapp.com/](readme-images/screendevices.PNG)
+
 ## Milestone Project 4
 ## E-Commerce Web App - PC, Parts and Equipment
 
@@ -45,6 +48,7 @@ If you would like make a test purchase, please use the below details:
     - I would like to view my order history.
     - I would like to review a product.
     - I would like to comment on a blog post.
+    - I would like to "Like" a Blog Article.
 
 - As an Administrative User:
 
@@ -53,7 +57,9 @@ If you would like make a test purchase, please use the below details:
     - I would like to edit existing product details.
     - I would like to create new blog posts.
     - I would like to edit an existing blog post.
+    - I would like to delete an existing blog post.
     - I would like to delete existing reviews written by all users in case the content is inappropriate.
+    - I would like to remove existing Blog Article comments by all users or visitors, in case the content is inappropriate.
 
 
 
@@ -222,11 +228,9 @@ Please note that due to Stripe restrictions, single orders that exceed £10,000 
 
 ![](readme-images/article.PNG)
 
-## Custom 404 Page
+## Custom Error Pages
 
-- For cases where a data has been removed and no longer exists, it is possible for a user to access a page which no longer exists. A custom error page has been created for a more user friendly experience.
-
-
+- For cases where errors occur such as data has been removed and no longer exists, it is possible for a user to access a page which no longer exists. I believe that custom error pages are essential and give a more friendly user experience as errors will always occur.
 
 
 
