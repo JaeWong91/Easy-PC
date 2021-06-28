@@ -263,13 +263,16 @@ Please note that due to Stripe restrictions, single orders that exceed £10,000 
 
 ## Testing
 
-- [W3C Markup Validator](https://validator.w3.org/) - 
-- [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/)
-- [JShint](https://jshint.com/)
+- [W3C Markup Validator](https://validator.w3.org/) - To ensure there were no syntax errors in the HTML code.
+- For CSS, I used W3C CSS [W3C CSS Validator Services](https://jigsaw.w3.org/css-validator/). No errors found here.
+- For Javascript, I used [JShint](https://jshint.com/) to ensure no errors in my code.
 - [PEP8 online](http://pep8online.com/) - The Python code was run through an online checker to ensure no errors found.
 - [cornflakes-linter(flake8)](https://marketplace.visualstudio.com/items?itemName=kevinglasson.cornflakes-linter) - For the Python code, the cornflakes-linter(flake8) extension is installed in the development environment. This gave a live validation check for the code. There are warnings about lines being too long but having spoke to other developers, the maximum 79 characters per line is rather out-dated where screens were much smaller in previous generations.
-- [Google Chrome](https://www.google.co.uk/chrome/?brand=FHFK&gclid=CjwKCAjww-CGBhALEiwAQzWxOiXnVAU7qEiD9ykUo3VELjaivlvMcpmSTkKLr0vSMqvjnv7nKkY8WxoCED8QAvD_BwE&gclsrc=aw.ds) and [Firefox](https://www.mozilla.org/en-GB/firefox/new/) - These two browsers are arguably the most popular. These browsers were used to test the visuals and functionality of the website throughout the development process.
+- [Google Chrome](https://www.google.co.uk/chrome/?brand=FHFK&gclid=CjwKCAjww-CGBhALEiwAQzWxOiXnVAU7qEiD9ykUo3VELjaivlvMcpmSTkKLr0vSMqvjnv7nKkY8WxoCED8QAvD_BwE&gclsrc=aw.ds) and [Firefox](https://www.mozilla.org/en-GB/firefox/new/) - These two browsers are arguably the most popular. These browsers were used to test the visuals and functionality of the website throughout the development process. Using the developer tools, the range of the resolutions were 350x650 to 2160x1440 which would cover a large variety real world screen devices
 - [TEMPMAIL](https://temp-mail.org/en/) - this is used for temporary email addresses when creating/registering an account. Verification of th e account is done where the site will send an email.
+- [Responsinator](http://www.responsinator.com/) - This website was used to test the site on a huge variety of screen sizes. This was to ensure the responsive design of the webapp.
+
+Further Manual Testing - The documentation can be found [here]().
 
 # Deployment
 
