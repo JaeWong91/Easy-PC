@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="col-12">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">  <!-- this is the back button to return to products page-->
+                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
@@ -132,7 +132,7 @@
                                 </a>
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                             </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">  <!-- this is a hidden input field. It uses the request.path attribute to submit a field named 'redirect_URL' which will contain the current URL-->
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </div>
                     </form>
                 </div>
