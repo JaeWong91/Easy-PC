@@ -237,6 +237,10 @@ Please note that due to Stripe restrictions, single orders that exceed £10,000 
 - User password reset without the use of a reset email request.
 - An advanced product category feature such as selection boxes to select what categories they want on screen.
 - Home page - A possible carousel to display latest products and latest blog articles.
+- Animations throughout the site to enhance the UI.
+- Contact Page - An integrated message service or email contact form for asking questions regarding products, or assistance of any kind.
+- A comment "Like" feature - A blog article Like feature is already implemented but one for comments would further enhance the interactivity.
+- A review "Like" feature - similar to the above comment Like feature, one for voting on reviews and sorting the reviews would enhance the customer experience. When browing products, reading a popular and trusted review would provide a confident decision for the customer.
 
 
 # Technologies Used
