@@ -2,13 +2,13 @@ from django.contrib import admin
 from .models import Order, OrderLineItem
 
 
-class OrderLineItemAdminInline(admin.TabularInline):    # This inline item is going to allow us to add and edit line items in the admin right from inside the order model.
+class OrderLineItemAdminInline(admin.TabularInline):
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    inlines = (OrderLineItemAdminInline,)       # We just need to add the inlines option here in the order admin class to make the line item total to read-only
+    inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',
                        'delivery_cost', 'order_total',
