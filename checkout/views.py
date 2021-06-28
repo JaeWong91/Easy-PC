@@ -52,15 +52,14 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save(commit=False)       # the commit=False here is to prevent multiple save events by preventing the first one from happening
+            order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
             for item_id, item_data in bag.items():
                 try:
-                    product = Product.objects.get(id=item_id)   # first get Product ID out of the bag
-                    # isinstance(item_data, int):              # if the valus is an integer then we know we're working with items without sizes, maybe can delete this line??
+                    product = Product.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
@@ -75,8 +74,8 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save-info' in request.POST          # if customer wants to save their profile information
-            return redirect(reverse('checkout_success', args=[order.order_number]))     # name the new URL checkout_success, and pass it the order number as an argument
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
@@ -88,10 +87,10 @@ def checkout(request):
             messages.error(request, "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
-        current_bag = bag_contents(request)         # this is so it does not overwrite the bag variable that already exists
-        total = current_bag['grand_total']          # get the grand_total key out of the current bag
-        stripe_total = round(total * 100)           # multiply by 100 and round it to zero decimal places using the round function since stripe will require the amount to charge as an integer
-        stripe.api_key = stripe_secret_key          # set secret key on stripe
+        current_bag = bag_contents(request)
+        total = current_bag['grand_total']
+        stripe_total = round(total * 100)
+        stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
